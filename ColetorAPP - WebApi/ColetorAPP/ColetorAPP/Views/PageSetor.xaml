@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ColetorAPP.Views.PageSetor"
+             BackgroundImageSource="fundo_login">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Button x:Name="bt_setor_padrao" Text="Setor Padrao" Clicked="Setor_Padrao" 
+                    VerticalOptions="Start" HorizontalOptions="CenterAndExpand"
+                    Font="20"></Button>
+            <Button Text="Setores nos Produtos" Clicked="Setor_Produtos"
+                    VerticalOptions="End" 
+                    HorizontalOptions="CenterAndExpand" Font="20"></Button>
+            <Label x:Name="lbl_setor" Text="Clique no Botão abaixo para Ler os setores dos Produtos!"
+                VerticalOptions="Fill" HorizontalTextAlignment="Center"
+                HorizontalOptions="Fill" FontSize="20" IsVisible="False" />
+            <Button x:Name="bt_setores_produtos" Text="Ler CSV" Clicked="Ler_CSV"
+                    VerticalOptions="Fill" 
+                    HorizontalOptions="Fill" Font="20" IsVisible="False">
+            </Button>
+            <ListView x:Name="ListaSetores" HasUnevenRows="True" SeparatorColor="Red"
+                      Margin="15" IsVisible="False">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding Id,StringFormat='Codigo: {0} '}" />
+                                <Label FontSize="Large" Text="{Binding Dados,StringFormat='Setores: {0} '}" />
+                                <!--<Label Text="{Binding Dados,StringFormat='Dados: {0} '}" />-->
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button x:Name="bt_confirmar_setor" Text="Confirmar"
+                    VerticalOptions="Fill" Clicked="Bt_confirmar_setor_Clicked"
+                    HorizontalOptions="Fill" Font="20" IsVisible="False">
+            </Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

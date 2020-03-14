@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ColetorAPP.Views.PageListar"
+             Title="Listagem de Produtos">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Exibir apenas os Produtos Contados: " FontSize="Medium" Margin="15"/>
+                <Switch x:Name="swFavorito" HorizontalOptions="Start" Toggled="SwFavorito_Toggled"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Entry x:Name="txt_Nota" Placeholder="Digite um produto" 
+                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                <Button Text="Localizar" x:Name="bt_Localizar" HorizontalOptions="CenterAndExpand" Clicked="bt_Localizar_Clicked" />
+
+            </StackLayout>
+            <ListView x:Name="ListaNotas" HasUnevenRows="True" SeparatorColor="Red"
+                      Margin="15" ItemSelected="ListaNotas_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding Id,StringFormat='Codigo: {0} '}" />
+                                <Label FontSize="Large" Text="{Binding Nome,StringFormat='Produto: {0} '}" />
+                                <Label FontSize="Medium" Text="{Binding Quantidade,StringFormat='Quantidade: {0} '}" />
+                                <Label FontSize="Large" Text="{Binding Setor,StringFormat='Setor: {0} '}" />
+                                <!--<Label Text="{Binding Dados,StringFormat='Dados: {0} '}" />-->
+                            </StackLayout>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

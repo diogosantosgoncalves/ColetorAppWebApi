@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:effects="clr-namespace:Xamarin.KeyboardHelper;assembly=Xamarin.KeyboardHelper"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:ColetorAPP.Views"
+             x:Class="ColetorAPP.Views.PageScanner">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Clique no botão para iniciar a leitura!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" FontSize="20" />
+            <Button Text="Scanner Automático" Clicked="bt_ScannerAutomatico" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Font="40"></Button>
+            <Button Text="Scanner Manual" Clicked="bt_ScannerManual" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Font="40"></Button>
+            <Button Clicked="button2_clicked" Text="Focus Button 2" x:Name="bt_focus"/>
+
+            <StackLayout >
+                <Entry x:Name="txt_qtde" HorizontalOptions="CenterAndExpand" 
+                       Placeholder="Digite uma quantidade"  VerticalOptions="Center" Keyboard="Numeric"
+                       ReturnType="Send"  FontSize="30" Completed="Gravar_banco"
+                       effects:KeyboardEffect.EnableKeyboard="True">
+                    <Entry.Effects>
+                        <effects:KeyboardEnableEffect/>
+                    </Entry.Effects>
+                </Entry>
+                
+
+                <Button HorizontalOptions="CenterAndExpand" Text="Confirmar" 
+                Clicked="Gravar_banco" IsVisible="False" x:Name="bt_gravarbanco" FontSize="20" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

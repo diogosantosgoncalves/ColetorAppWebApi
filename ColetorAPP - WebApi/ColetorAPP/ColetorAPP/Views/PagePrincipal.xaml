@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ColetorAPP.Views.PagePrincipal"
+                  Title=" Coletor APP" IsPresented="True">
+    <MasterDetailPage.Master>
+        <ContentPage Title="Menu">
+            <StackLayout Margin="5,0,0,0">
+                <!-- <Image Source="android" HorizontalOptions="Center" /> -->
+
+                <Label Text="Coletor" FontSize="Large" HorizontalOptions="Center" 
+                       Margin="0,0,0,5"/>
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="semimagem" WidthRequest="200" HeightRequest="150"
+                           x:Name="MinhaImagem" 
+                           HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TirarFoto" NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="home"/>
+                    <Button x:Name="bt_home" Text="Home" 
+                            Clicked="bt_home_Clicked" HorizontalOptions="FillAndExpand" IsEnabled="False"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="inicio_contagem" WidthRequest="40"/>
+                    <Button x:Name="bt_sobre" Text="Iniciar contagem" 
+                            Clicked="bt_sobre_Clicked" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="Cadastrar"/>
+                    <Button x:Name="bt_cadastrar" Text="Cadastrar" 
+                            Clicked="bt_cadastrar_Clicked" HorizontalOptions="FillAndExpand" IsEnabled="False"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="localizar1"/>
+                    <Button x:Name="bt_listar" Text="Localizar" 
+                            Clicked="bt_listar_Clicked" HorizontalOptions="FillAndExpand" IsEnabled="False"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="codigodebarras"/>
+                    <Button x:Name="bt_scanner" Text="Iniciar Scanner" 
+                            Clicked="bt_scanner_Clicked" HorizontalOptions="FillAndExpand" IsEnabled="False"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="excel1"/>
+                    <Button x:Name="bt_exportar_csv" Text="Exportar CSV" 
+                            Clicked="bt_exportar_csv_Clicked" HorizontalOptions="FillAndExpand" IsEnabled="False"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="photo"/>
+                    <Button x:Name="bt_Tirar_foto" Text="Tirar Foto" 
+                            Clicked="bt_TirarFoto" HorizontalOptions="FillAndExpand" IsEnabled="False"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="email"/>
+                    <Button x:Name="bt_Email" Text="Enviar Email" 
+                            Clicked="bt_EnviarEmail_Clicked" HorizontalOptions="FillAndExpand" IsEnabled="False"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="fechar_contagem" WidthRequest="40"/>
+                    <Button x:Name="bt_ler_csv" Text="Fechar Contagem" 
+                        Clicked="bt_FecharContagem" HorizontalOptions="FillAndExpand" IsEnabled="False"/>
+                </StackLayout>
+
+            </StackLayout>
+        </ContentPage>
+    </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+        <ContentPage Title="Pagina Principal">
+            <Label x:Name="testeDB" Text="Alô Mundo" />
+        </ContentPage>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ColetorAPP.Views.PageLogin"
+             BackgroundImageSource="fundo_login"
+             >
+    <ContentPage.Content>
+        <StackLayout>
+            <!-- Place new controls here -->
+            <!-- <Image Source="cameracel" />-->
+            <StackLayout BackgroundColor="RoyalBlue">
+                <Label FontSize="32" Margin="8" FontAttributes="Bold" TextColor="White"
+                       FontFamily="Arial Black" Text="COLETO APP" HorizontalTextAlignment="Center" />
+            </StackLayout>
+            <!--<Label Text="COLETOR APP" 
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand" FontSize="32" Margin="8" FontAttributes="Bold"/>-->
+            <StackLayout>
+                <Label Text="Login: " FontSize="30" HorizontalOptions="Center" />
+                <Entry x:Name="txt_login" Placeholder="Digite seu Login" HorizontalTextAlignment="Center" FontSize="25" Margin="25" TextColor="White" />
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Senha: " FontSize="30" HorizontalOptions="Center" />
+                <Entry x:Name="txt_senha" Placeholder="Digite sua Senha" HorizontalTextAlignment="Center" IsPassword="True" FontSize="25" TextColor="White"/>
+            </StackLayout  >
+            <StackLayout>
+            <Button Text="Entrar" HorizontalOptions="Center" FontSize="25" FontAttributes="Bold"  
+                BorderColor="Blue" TextColor="White" Clicked="Verificar_Usuario"  BorderWidth="90"/>
+            <Button Text="Cadastrar" HorizontalOptions="Center" FontSize="25" FontAttributes="Bold"  
+                 BorderColor="Blue"  TextColor="White" Clicked="cadastrar_Usuario" BorderWidth="90"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

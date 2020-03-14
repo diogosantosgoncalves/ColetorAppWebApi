@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ColetorAPP.Views.PageHome"
+             Title="Coletor APP" BackgroundColor="White">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Source="inicial"
+                       Grid.Column="0" Grid.Row="0"
+                       Grid.ColumnSpan="2"
+                       HorizontalOptions="CenterAndExpand" 
+                       VerticalOptions="CenterAndExpand" Margin="50"/>
+
+                <Image x:Name="barcode2" Source="barcode2"  Grid.Column="0" Grid.Row="1" VerticalOptions="End">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                                Tapped="tap_IniciarScanner"
+                                NumberOfTapsRequired="1">
+                        </TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <Image x:Name="imgLocalizar" Source="localizar1"  Grid.Column="1" Grid.Row="1" VerticalOptions="End">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                                Tapped="tap_LocalizarProduto"
+                                NumberOfTapsRequired="1">
+                        </TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Iniciar Scanner" Grid.Column="0" Grid.Row="2"
+                       HorizontalOptions="Center" VerticalOptions="End" FontSize="Large"/>
+                <Label Text="Localizar" Grid.Column="1" Grid.Row="2"
+                       HorizontalOptions="Center" VerticalOptions="End" FontSize="Large"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

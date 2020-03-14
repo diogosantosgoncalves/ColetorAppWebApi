@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ColetorAPP.Views.PageEmail"
+             Title="Envio de Email">
+    <ContentPage.Content>
+        <StackLayout  Margin="20" >
+            <Entry x:Name="txt_destinatario" Placeholder="Digite o Destinatário" Keyboard="Email"/>
+            <Entry x:Name="txt_assunto" Keyboard="Plain" 
+                   Placeholder="Assunto"/>
+            <Editor x:Name="txt_mensagem" Placeholder="Escreva uma mensagem aqui" />
+            <Button x:Name="bt_Enviar" Clicked="EnviarEmail" Text="Enviar Email" />
+            <Label Text="Obs: O arquivo em .CSV será anexado automaticamente" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

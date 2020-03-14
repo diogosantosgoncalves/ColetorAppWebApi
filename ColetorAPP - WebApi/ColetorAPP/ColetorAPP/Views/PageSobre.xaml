@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ColetorAPP.Views.PageSobre"
+             Title="Página Sobre">
+    <ContentPage.Content>
+        <StackLayout Orientation="Horizontal" Margin="20">
+            <Image Source="android_sobre" />
+            <StackLayout Margin="10">
+                <Label Text="Dados do Aplicativo" FontSize="Large" VerticalOptions="EndAndExpand" FontAttributes="Bold" />
+                <Label Text="Nome do APP: Coletor APP!" FontAttributes="Bold" FontSize="Medium"
+                       VerticalOptions="Center" HorizontalOptions="Start"/>
+                <Label Text="Descrição do Projeto: Projeto Desenvolvido com curso Xamarin!" FontAttributes="Bold" FontSize="Medium"
+                       VerticalOptions="Center" HorizontalOptions="Start"/>
+                <Label Text="Autor: Diogo dos Santos" FontAttributes="Bold" FontSize="Medium" 
+                       VerticalOptions="StartAndExpand" HorizontalOptions="Start"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

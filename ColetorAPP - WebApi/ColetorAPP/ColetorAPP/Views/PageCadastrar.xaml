@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ColetorAPP.Views.PageCadastrar"
+             Title="Cadastro e Alteração de Produtos!">
+    <ContentPage.Content>
+        <StackLayout  Margin="20">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Id:" />
+                <Entry x:Name="txt_Codigo" IsEnabled="False" IsVisible="True" Placeholder="Codigo Automático"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Produto: " IsEnabled="False"/>
+                <Entry x:Name="txt_Titulo" Keyboard="Plain" 
+                   Placeholder="Digite um Produto" IsEnabled="False"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Quantidade: " />
+                <Entry x:Name="txt_Qtde" Keyboard="Plain" Placeholder="Quantidade" IsVisible="False"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Produto Inativo: " FontSize="Medium" Margin="10" IsEnabled="False"/>
+                <Switch x:Name="swFavorito" HorizontalOptions="Start" IsEnabled="False"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Setor: " FontSize="Medium" IsEnabled="False"/>
+                <Editor x:Name="txt_Dados"  Keyboard="Plain" 
+                   Placeholder="Dados do Produto(Setor)" HorizontalOptions="Start"
+                   IsEnabled="False" FontSize="Body"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Margin="20,0,20,20">
+                <Button x:Name="bt_Salvar" Text="Inserir" 
+                        Clicked="bt_Salvar_Clicked" HorizontalOptions="FillAndExpand"/>
+                <Button x:Name="bt_Excluir" Text="Excluir" 
+                        Clicked="bt_Excluir_Clicked" HorizontalOptions="FillAndExpand" IsVisible="False"/>
+                <Button x:Name="bt_Cancelar" Text="Cancelar" 
+                        HorizontalOptions="FillAndExpand" Clicked="bt_Cancelar_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
