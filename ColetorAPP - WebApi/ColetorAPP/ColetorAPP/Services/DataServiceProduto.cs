@@ -9,7 +9,7 @@ using System.Net.Http.Headers;
 
 namespace ColetorAPP.Services
 {
-    class DataServiceProduto
+    public class DataServiceProduto
     {
         HttpClient httpCliente = new HttpClient();
         public string messagem = "";

@@ -14,18 +14,35 @@ namespace ColetorAPP.Services
 
         public async Task<bool> GetBuscar_Usuario(ModelUsuario modelUsuario)
         {
-            string url = "http://192.168.18.5:3000/api/usuario";
-            var response = await httpClient.GetStringAsync(url);
-            var lista_produtos = JsonConvert.DeserializeObject<List<ModelUsuario>>(response);
-           
-            //return lista_produtos;
-            //if (!response.IsSuccessStatusCode)
-            if(lista_produtos == null)
+            try
             {
-                //throw new Exception("Erro ao atualizar Produtos");
-                return false;
+                string url = "http://192.168.18.5:3000/api/usuario/usuario";
+                //var response = await httpClient.GetStringAsync(url);
+                var json = JsonConvert.SerializeObject(modelUsuario);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                //response = await client.PostAsync(uri, content);
+                HttpResponseMessage response = null;
+
+                response = await httpClient.PostAsync(url, content);
+
+                if (response.StatusCode == System.Net.HttpStatusCode.Accepted)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                    //return lista_produtos;
+                    //if (!response.IsSuccessStatusCode)
+
+                    return true;
+            }catch(Exception ex)
+            {
+                throw new Exception();
             }
-            return true;
+
         } 
 
     }

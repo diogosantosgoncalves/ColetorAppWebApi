@@ -23,33 +23,43 @@ namespace ColetorAPP.Views
             //MainPage = new NavigationPage(new PagePrincipal());
             //Detail = new PageHome();
         }
-        private void Verificar_Usuario(object sender, EventArgs e)
+        private async void Verificar_Usuario(object sender, EventArgs e)
         {
-            bool achou;
+            bool achou = false;
             ModelUsuario usu = new ModelUsuario();
             usu.Nome = txt_login.Text;
             usu.Senha = txt_senha.Text;
             if (string.IsNullOrEmpty(usu.Nome))
             {
-                DisplayAlert("Aviso!", "Digite um nome de Usuário!", "ok");
+                await DisplayAlert("Aviso!", "Digite um nome de Usuário!", "ok");
                 return;
             }
             if (string.IsNullOrEmpty(usu.Senha))
             {
-                DisplayAlert("Aviso!", "Digite uma Senha de Usuário!", "ok");
+                await DisplayAlert("Aviso!", "Digite uma Senha de Usuário!", "ok");
                 return;
             }
             ServicesDBUsuario dbUsu = new ServicesDBUsuario(App.DbPath);
 
-            
 
+            achou = await dataServiceUsuario.GetBuscar_Usuario(usu);
             //bool acho1u= DataServiceUsuario.GetBuscar_Usuario(usu);
-
+            if(achou == true)
+            {
+                await DisplayAlert("Aviso!", "Bem Vindo ao Aplicativo!", "ok");
+                await Navigation.PushModalAsync(new PageSetor());
+            }
+            else
+            {
+                await DisplayAlert("Aviso!", "Usuário ou Senha Incorreto!", "ok");
+                return;
+            }
+            /*/
             int lista = dbUsu.LocalizarUsuario(usu);
             if (lista == 0)
             {
                 
-                DisplayAlert("Aviso!", "Usuário ou Senha Incorreto!", "ok");
+                await DisplayAlert("Aviso!", "Usuário ou Senha Incorreto!", "ok");
                 return;
                 //Navigation.PushModalAsync(new PagePrincipal());
             }
@@ -58,10 +68,12 @@ namespace ColetorAPP.Views
                 DisplayAlert("Aviso!", "Bem Vindo ao Aplicativo!", "ok");
                 Navigation.PushModalAsync(new PageSetor());
             }
+            */
             //Navigation.PushModalAsync(new PagePrincipal());
             //MasterDetailPage p = (MasterDetailPage)Application.Current.MainPage;
             //p.Detail = new NavigationPage(new PageScanner());
             //MainPage = new PageLogin();
+
         }
         private void cadastrar_Usuario(object sender, EventArgs e)
         {
