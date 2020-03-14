@@ -15,6 +15,7 @@ namespace ColetorAPP.Views
     //public partial class PageLogin : MasterDetailPage
     public partial class PageLogin : ContentPage
     {
+        DataServiceUsuario dataServiceUsuario = new DataServiceUsuario();
         public PageLogin()
         {
             InitializeComponent();
@@ -24,6 +25,7 @@ namespace ColetorAPP.Views
         }
         private void Verificar_Usuario(object sender, EventArgs e)
         {
+            bool achou;
             ModelUsuario usu = new ModelUsuario();
             usu.Nome = txt_login.Text;
             usu.Senha = txt_senha.Text;
@@ -38,6 +40,11 @@ namespace ColetorAPP.Views
                 return;
             }
             ServicesDBUsuario dbUsu = new ServicesDBUsuario(App.DbPath);
+
+            
+
+            //bool acho1u= DataServiceUsuario.GetBuscar_Usuario(usu);
+
             int lista = dbUsu.LocalizarUsuario(usu);
             if (lista == 0)
             {
