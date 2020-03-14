@@ -17,6 +17,23 @@ namespace ColetorAPP.Services
             conn = new SQLiteConnection(dbPath);
             conn.CreateTable<Produto>();
         }
+        public int  Atualizar_Quantidade(string nome)
+        {
+            int quant = 0;
+            Produto produto1 = new Produto();
+
+            var query = from p in conn.Table<Produto>()
+                        where p.Nome == nome
+                        select p;
+
+            foreach (Produto produto in query)
+            {
+
+                quant = produto.Quantidade;
+            }
+            return quant;
+        }
+
         public void Inserir(Produto nota)
         {
             try
@@ -29,6 +46,8 @@ namespace ColetorAPP.Services
                 {
                     throw new Exception("Dados dos produtos não informado!");
                 }
+                
+                
                 //if (nota.Qtde > 0)
                 //{
                 //    throw new Exception("Quantidade de produtos não informado!");

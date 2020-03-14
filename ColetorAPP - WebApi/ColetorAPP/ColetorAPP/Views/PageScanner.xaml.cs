@@ -21,6 +21,7 @@ namespace ColetorAPP.Views
         public string quant;
         int resultado = 1;
         public string codigo_barra;
+        List<Produto> lista_produtos;
         public PageScanner()
         {
 
@@ -86,6 +87,7 @@ namespace ColetorAPP.Views
         }
         private async Task ScannerAutomatico()
         {
+            int quant = 0;
             var scanner = DependencyService.Get<IQrCodeScanningService>();
             var result = await scanner.ScanAsync();
             try
@@ -97,15 +99,24 @@ namespace ColetorAPP.Views
                     Vibration.Vibrate();
                     var duration = TimeSpan.FromSeconds(1);
                     Vibration.Vibrate(duration);
-
+                    ServicesDBProduto dBNotas = new ServicesDBProduto(App.DbPath);
                     Produto nota = new Produto();
                     nota.Nome = QrCode.ToString();
                     nota.Setor = "teste";
-                    nota.Quantidade = 1;
+                    //nota.Quantidade = 1;
                     //nota.Favorito = swFavorito.IsToggled;
-                    ServicesDBProduto dBNotas = new ServicesDBProduto(App.DbPath);
 
-                    dBNotas.Inserir(nota);
+                    lista_produtos = dBNotas.Localizar(nota.Nome);
+                    foreach(var prod in lista_produtos)
+                    {
+                        nota.Id = prod.Id;
+                        nota.Setor = prod.Setor;
+                    }
+
+                    quant = dBNotas.Atualizar_Quantidade(nota.Nome);
+                    nota.Quantidade = quant + 1;
+                    dBNotas.Alterar(nota);
+                    //dBNotas.Inserir(nota);
                     DependencyService.Get<IMessage>().ShortAlert("Código: " + QrCode.ToString() + " \n Quantidade adicionada: 1");
                
                 }
@@ -169,8 +180,6 @@ namespace ColetorAPP.Views
                 base.OnAppearing();
                 this.Appearing += MainPage_Appearing;
                 this.Disappearing += MainPage_Disappearing;
-                //base.Appearing += (object sender1, EventArgs e1) => txt_qtde.Focus();
-                //txt_qtde.IsVisible = true;
                 bt_gravarbanco.IsVisible = true;
                 txt_qtde.Focus();
                 txt_qtde.IsEnabled = true;
@@ -188,17 +197,26 @@ namespace ColetorAPP.Views
         }
         private void Gravar_banco(object sender, EventArgs e)
         {
+            int quant = 0;
             Produto nota = new Produto();
             nota.Nome = codigo_barra;
             nota.Setor = "teste";
             nota.Quantidade = Int32.Parse(txt_qtde.Text);
             ServicesDBProduto dBNotas = new ServicesDBProduto(App.DbPath);
-            dBNotas.Inserir(nota);
+            ///////////////////////////////////////////////////////////
+            lista_produtos = dBNotas.Localizar(nota.Nome);
+            foreach (var prod in lista_produtos)
+            {
+                nota.Id = prod.Id;
+                nota.Setor = prod.Setor;
+            }
+
+            quant = dBNotas.Atualizar_Quantidade(nota.Nome);
+            nota.Quantidade = quant + Int32.Parse(txt_qtde.Text); 
+            dBNotas.Alterar(nota);
+            /////////////////////////////////////////////////////////////////
+            //dBNotas.Inserir(nota);
             DependencyService.Get<IMessage>().ShortAlert("Código: " + codigo_barra + " \n Quantidade adicionada: " + txt_qtde.Text);
-            //txt_qtde.Text = "";
-            //txt_qtde.IsVisible = false;
-            //bt_gravarbanco.IsVisible = false;
-            //txt_qtde.Focus();
         }
     }
 }
