@@ -36,6 +36,11 @@ namespace ColetorAPP.Services
                 HttpResponseMessage response = null;
 
                 response = await httpCliente.PutAsync(url, content);
+
+                if(response.IsSuccessStatusCode == true)
+                {
+                    return true;
+                }
                 
                 if (!response.IsSuccessStatusCode)
                 {

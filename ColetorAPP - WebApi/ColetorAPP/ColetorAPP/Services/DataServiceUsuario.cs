@@ -16,7 +16,7 @@ namespace ColetorAPP.Services
         {
             try
             {
-                string url = "http://192.168.18.5:3000/api/usuario/usuario";
+                string url = "http://192.168.18.5:3000/api/usuario";
                 //var response = await httpClient.GetStringAsync(url);
                 var json = JsonConvert.SerializeObject(modelUsuario);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -24,9 +24,10 @@ namespace ColetorAPP.Services
                 //response = await client.PostAsync(uri, content);
                 HttpResponseMessage response = null;
 
-                response = await httpClient.PostAsync(url, content);
+                response = await httpClient.PutAsync(url, content);
 
-                if (response.StatusCode == System.Net.HttpStatusCode.Accepted)
+                //if (response.StatusCode == System.Net.HttpStatusCode.Accepted)
+                if(response.IsSuccessStatusCode)
                 {
                     return true;
                 }
