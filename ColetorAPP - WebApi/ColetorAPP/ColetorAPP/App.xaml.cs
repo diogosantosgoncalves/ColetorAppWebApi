@@ -6,6 +6,11 @@ using Xamarin.Forms;
 
 namespace ColetorAPP
 {
+    public static class Globais
+    {
+        public static string Ip = "";
+        public static string Porta = "";
+    }
     public partial class App : Application
     {
         public static string DbName;
@@ -28,7 +33,7 @@ namespace ColetorAPP
 
             //MainPage = new PagePrincipal();
             //MainPage = new PageLogin();
-            MainPage = new NavigationPage(new PageLogin());
+            MainPage = new NavigationPage(new PageIP());
         }
         protected override void OnStart()
         {

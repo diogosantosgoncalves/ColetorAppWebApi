@@ -16,7 +16,10 @@ namespace ColetorAPP.Services
         {
             try
             {
-                string url = "http://192.168.18.5:3000/api/usuario";
+                string ur = "http://" + Globais.Ip + ":" + Globais.Porta;
+                string url = ur + "/api/usuario";
+
+                //string url = "http://192.168.18.5:3000/api/usuario";
                 //var response = await httpClient.GetStringAsync(url);
                 var json = JsonConvert.SerializeObject(modelUsuario);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");

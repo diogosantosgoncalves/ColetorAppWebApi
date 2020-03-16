@@ -47,7 +47,7 @@ namespace ColetorAPP.Views
             if(achou == true)
             {
                 await DisplayAlert("Aviso!", "Bem Vindo ao Aplicativo!", "ok");
-                await Navigation.PushModalAsync(new PageSetor());
+                await Navigation.PushModalAsync(new PagePrincipal());
             }
             else
             {
