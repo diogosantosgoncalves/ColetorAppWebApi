@@ -17,6 +17,7 @@ namespace ColetorAPP.Views
         public PageIP()
         {
             InitializeComponent();
+            txt_ip.Focus();
         }
 
         private async void Conectar_Servidor(object sender, EventArgs e)

@@ -30,7 +30,7 @@
                 <StackLayout Orientation="Horizontal">
                     <Image Source="inicio_contagem" WidthRequest="40"/>
                     <Button x:Name="bt_sobre" Text="Iniciar contagem" 
-                            Clicked="bt_sobre_Clicked" HorizontalOptions="FillAndExpand"/>
+                            Clicked="bt_Iniciar_Contagem" HorizontalOptions="FillAndExpand"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Image Source="Cadastrar"/>

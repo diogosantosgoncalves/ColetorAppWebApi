@@ -42,7 +42,32 @@ namespace ColetorAPP.Views
             Detail = new NavigationPage(new PageHome());
             IsPresented = false;
         }
+        async private void bt_Iniciar_Contagem(object sender, EventArgs e)
+        {
 
+            List<Produto> produtos = new List<Produto>();
+            produtos = await DataServiceProduto.GetTodosProdutos();
+            ServicesDBProduto dBProdutos = new ServicesDBProduto(App.DbPath);
+            foreach (var item in produtos)
+            {
+                Produto produto = new Produto();
+                produto.Id = item.Id;
+                produto.Nome = item.Nome;
+                produto.Setor = item.Setor;
+                produto.Quantidade = 0;
+                //produto.Quantidade = item.Quantidade;
+                produto.Inativo = item.Inativo;
+                produto.setor_id = item.setor_id;
+                dBProdutos.Inserir(produto);
+            }
+
+            //servicesDBProduto.Inserir();
+            await DisplayAlert("Importação", "Produtos Atualizados produtos", "ok");
+            await DisplayAlert("Importação", "Produtos Atualizados: " + produtos.Count.ToString(), "ok");
+            Habilitar_Botoes();
+            Detail = new NavigationPage(new PageHome());
+            IsPresented = false;
+        }
         private void bt_cadastrar_Clicked(object sender, EventArgs e)
         {
             Detail = new NavigationPage(new PageCadastrar());
@@ -84,31 +109,7 @@ namespace ColetorAPP.Views
 
 
         }
-        async private void bt_sobre_Clicked(object sender, EventArgs e)
-        {
-            
-            List<Produto> produtos = new List<Produto>();
-            produtos = await DataServiceProduto.GetTodosProdutos();
-            ServicesDBProduto dBProdutos = new ServicesDBProduto(App.DbPath);
-            foreach (var item in produtos)
-            {
-                Produto produto = new Produto();
-                produto.Id = item.Id;
-                produto.Nome = item.Nome;
-                produto.Setor = item.Setor;
-                produto.Quantidade = 0;
-                //produto.Quantidade = item.Quantidade;
-                produto.Inativo = item.Inativo;
-                dBProdutos.Inserir(produto);
-            }
 
-            //servicesDBProduto.Inserir();
-            await DisplayAlert("Importação", "Produtos Atualizados produtos", "ok");
-            await DisplayAlert("Importação", "Produtos Atualizados: " + produtos.Count.ToString(), "ok");
-            Habilitar_Botoes();
-            Detail = new NavigationPage(new PageHome());
-            IsPresented = false;
-        }
 
         private void bt_scanner_Clicked(object sender, EventArgs e)
         {
