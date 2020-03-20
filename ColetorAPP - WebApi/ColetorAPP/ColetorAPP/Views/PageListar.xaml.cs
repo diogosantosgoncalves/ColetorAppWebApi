@@ -23,12 +23,13 @@ namespace ColetorAPP.Views
             {
                 nome = txt_Nota.Text;
             }
+            swFavorito.IsToggled = true;
             ServicesDBProduto dBNotas = new ServicesDBProduto(App.DbPath);
             
             
             if (swFavorito.IsToggled)
             {
-                ListaNotas.ItemsSource = dBNotas.Localizar(nome, true);
+                ListaNotas.ItemsSource = dBNotas.Localizar(nome, false);
             }
             else
             {

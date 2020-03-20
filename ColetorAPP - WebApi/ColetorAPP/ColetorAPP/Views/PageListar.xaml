@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Label Text="Exibir apenas os Produtos Contados: " FontSize="Medium" Margin="15"/>
+                <Label Text="Exibir apenas os Produtos Ativos: " FontSize="Medium" Margin="15"/>
                 <Switch x:Name="swFavorito" HorizontalOptions="Start" Toggled="SwFavorito_Toggled"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal">

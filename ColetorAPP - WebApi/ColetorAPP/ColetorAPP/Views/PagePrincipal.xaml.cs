@@ -56,9 +56,17 @@ namespace ColetorAPP.Views
                 produto.Setor = item.Setor;
                 produto.Quantidade = 0;
                 //produto.Quantidade = item.Quantidade;
-                produto.Inativo = item.Inativo;
+                produto.Inativo = false;
+                //produto.Inativo = item.Inativo;
                 produto.setor_id = item.setor_id;
-                dBProdutos.Inserir(produto);
+                if (dBProdutos.Localizar(produto.Nome).Count == 0)
+                {
+                    dBProdutos.Inserir(produto);
+                }
+                else
+                {
+                    dBProdutos.Alterar(produto);
+                }    
             }
 
             //servicesDBProduto.Inserir();
@@ -94,8 +102,11 @@ namespace ColetorAPP.Views
                     produto.Nome = item.Nome;
                     produto.Setor = item.Setor;
                     produto.Quantidade = item.Quantidade;
-                    produto.Inativo = item.Inativo;
+                    //produto.Inativo = item.Inativo;
                     await DataServiceProduto.Atualiza_Produto(item.Id, produto);
+
+                    produto.Inativo = true;
+                    dBProdutos.Alterar(produto);
 
                 }
                 await DisplayAlert("Atualizado no Servidor: ", lista_produtos.Count.ToString() + " Produtos", "ok");
