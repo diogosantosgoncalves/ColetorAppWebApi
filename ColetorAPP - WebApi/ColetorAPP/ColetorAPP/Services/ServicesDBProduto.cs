@@ -10,7 +10,6 @@ namespace ColetorAPP.Services
     {
         SQLiteConnection conn;
         public string StatusMessage { get; set; }
-
         public ServicesDBProduto(string dbPath)
         {
             //if (dbPath == "") dbPath = App.DbPath;

@@ -1,13 +1,14 @@
 ﻿using SQLite;
 using System;
 
+
+
 namespace ColetorAPP.Models
 {
     [Table("Produto")]
     public class Produto
     {
         [PrimaryKey, AutoIncrement]
-
         public int Id
         {
             get;
