@@ -107,10 +107,25 @@ namespace ColetorAPP.Views
                     //nota.Favorito = swFavorito.IsToggled;
 
                     lista_produtos = dBNotas.Localizar(nota.Nome);
-                    foreach(var prod in lista_produtos)
+                    if (lista_produtos == null)
+                    {
+                        await DisplayAlert("Aviso!", "Produto não encontrado no Banco de Dados", "ok");
+                        return;
+                    }
+
+                    foreach (var prod in lista_produtos)
                     {
                         nota.Id = prod.Id;
                         nota.Setor = prod.Setor;
+                    }
+
+                    foreach (var set in Globais.Setores)
+                    {
+                        if (set.ToString() != nota.Setor)
+                        {
+                            await DisplayAlert("Aviso!", "Sem permissão para contar esse produto", "ok");
+                            return;
+                        }
                     }
 
                     quant = dBNotas.Atualizar_Quantidade(nota.Nome);
@@ -166,6 +181,7 @@ namespace ColetorAPP.Views
         private async void bt_ScannerManual(object sender, EventArgs e)
         {
             await ScannerManual();
+            List<Produto> lista = new List<Produto>();
             bt_focus.Clicked += bt_focus_Clicked;
             this.Appearing += MainPage_Appearing;
             SoftKeyboard.Current.VisibilityChanged += Current_VisibilityChanged;
@@ -173,10 +189,32 @@ namespace ColetorAPP.Views
             txt_qtde.Focus();
             txt_qtde.IsEnabled = true;
 
-
-            if (!string.IsNullOrEmpty(codigo_barra))
+            ServicesDBProduto dBNotas = new ServicesDBProduto(App.DbPath);
+            lista = dBNotas.Localizar(codigo_barra);
+            if(lista == null)
             {
+                await DisplayAlert("Aviso!", "Produto não encontrado no Banco de Dados", "ok");
+                return;
+            }
+            string setor = "";
+            foreach(var i in lista)
+            {
+                setor = i.Setor;
+            }
 
+            if (!string.IsNullOrEmpty(setor))
+            {
+                //if(Globais.Setores.IndexOf(setor) == -1)
+                //{
+                foreach(var set in Globais.Setores)
+                {
+                    if(set.ToString() != setor)
+                    {
+                        await DisplayAlert("Aviso!", "Sem permissão para contar esse produto", "ok");
+                    }
+                }
+
+                //}
                 base.OnAppearing();
                 this.Appearing += MainPage_Appearing;
                 this.Disappearing += MainPage_Disappearing;

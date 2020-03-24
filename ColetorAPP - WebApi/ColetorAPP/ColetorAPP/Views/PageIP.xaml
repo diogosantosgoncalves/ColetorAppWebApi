@@ -23,6 +23,9 @@
                 <Button Text="Conectar" HorizontalOptions="Center" FontSize="25" FontAttributes="Bold"  
                 BorderColor="Blue" TextColor="White" Clicked="Conectar_Servidor"  BorderWidth="90"/>
             </StackLayout>
+            <StackLayout>
+                <Label Margin="0,150,90,0" Text="Versão do sistema: 1.3.24" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="Red" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
