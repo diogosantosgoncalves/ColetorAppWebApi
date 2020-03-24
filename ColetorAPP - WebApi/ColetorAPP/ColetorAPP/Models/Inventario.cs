@@ -6,7 +6,7 @@ using SQLite;
 namespace ColetorAPP.Models
 {
     [Table("Inventario")]
-    class ModelInventario
+    class Inventario
     {
         [PrimaryKey, AutoIncrement]
         public int Inv_Codigo
@@ -15,7 +15,7 @@ namespace ColetorAPP.Models
             set;
         }
         [NotNull]
-        public List<ModelUsuario> Usuario
+        public List<Usuario> Usuario
         {
             get;
             set;

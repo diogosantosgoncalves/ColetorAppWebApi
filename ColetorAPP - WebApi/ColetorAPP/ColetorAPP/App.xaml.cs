@@ -1,6 +1,7 @@
 ﻿using ColetorAPP.Services;
 using ColetorAPP.Views;
 using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
 
 
@@ -10,6 +11,7 @@ namespace ColetorAPP
     {
         public static string Ip = "";
         public static string Porta = "";
+        public static List<String> Setores = new List<string>();
     }
     public partial class App : Application
     {

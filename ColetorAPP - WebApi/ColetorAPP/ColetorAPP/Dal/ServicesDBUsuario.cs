@@ -14,10 +14,10 @@ namespace ColetorAPP.Services
         public ServicesDBUsuario(string dbPath)
         {
             conn = new SQLiteConnection(dbPath);
-            conn.CreateTable<ModelUsuario>();
+            conn.CreateTable<Usuario>();
         }
 
-        public void Inserir(ModelUsuario usu)
+        public void Inserir(Usuario usu)
         {
             try
             {
@@ -42,17 +42,17 @@ namespace ColetorAPP.Services
                 throw new Exception(ex.Message);
             }
         }
-        public int LocalizarUsuario(ModelUsuario usuario)
+        public int LocalizarUsuario(Usuario usuario)
         {
             //List<ModelUsuario> lista = new List<ModelUsuario>();
-            var resp = from p in conn.Table<ModelUsuario>()
+            var resp = from p in conn.Table<Usuario>()
                        where  p.Nome == usuario.Nome || p.Senha == usuario.Senha
                        select p;
             int lista = resp.Count();
             return lista;
 
         }
-        public void Alterar_Usuario(ModelUsuario usuario)
+        public void Alterar_Usuario(Usuario usuario)
         {
             try
             {

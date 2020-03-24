@@ -6,7 +6,7 @@ using SQLite;
 namespace ColetorAPP.Models
 {
     [Table("Usuario")]
-    public class ModelUsuario
+    public class Usuario
     {
         [PrimaryKey,AutoIncrement]
         public int Id

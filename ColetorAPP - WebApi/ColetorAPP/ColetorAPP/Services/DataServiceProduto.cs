@@ -20,13 +20,16 @@ namespace ColetorAPP.Services
             {
                 string ur = "http://" + Globais.Ip + ":" + Globais.Porta;
                 string url = ur + "/api/produtos";
-                //string url = "http://192.168.18.5:3000/api/produtos";
+            //string url = "http://192.168.18.5:3000/api/produtos";
                 var response = await httpCliente.GetStringAsync(url);
                 var lista_produtos = JsonConvert.DeserializeObject<List<Produto>>(response);
-
                 return lista_produtos;
             }
-            catch(Exception ex)
+            catch(HttpRequestException ex)
+            {
+                throw new Exception("Erro ao atualizar Produtos");
+            }
+            catch (ArgumentNullException e)
             {
                 throw new Exception("Erro ao atualizar Produtos");
             }

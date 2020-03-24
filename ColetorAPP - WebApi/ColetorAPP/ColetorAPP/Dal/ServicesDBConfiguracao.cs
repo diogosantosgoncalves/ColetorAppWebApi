@@ -59,19 +59,15 @@ namespace ColetorAPP.Services
             }
             return lista;
         }
-        public void Alterar_Usuario(Configuracao usuario)
+        public void Alterar(Configuracao config)
         {
             try
             {
-                if (string.IsNullOrEmpty(usuario.config_porta))
+                if (string.IsNullOrEmpty(config.config_ip) | string.IsNullOrEmpty(config.config_porta))
                 {
-                    throw new Exception("Nome não informado!");
+                    throw new Exception("Informe o IP ou a Porta!");
                 }
-                if (string.IsNullOrEmpty(usuario.config_ip))
-                {
-                    throw new Exception("Senha não informada");
-                }
-                int result = conn.Update(usuario);
+                int result = conn.Update(config);
                 StatusMessage = string.Format("{0} Registros alterados!", result);
             }
             catch (Exception ex)

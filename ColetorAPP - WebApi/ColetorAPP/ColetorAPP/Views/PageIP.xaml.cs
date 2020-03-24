@@ -16,22 +16,28 @@ namespace ColetorAPP.Views
     {
         DataServiceProduto dataServiceProduto = new DataServiceProduto();
         ServicesDBConfiguracao dBConfiguracao = new ServicesDBConfiguracao(App.DbPath);
-
+        bool vazia = true;
+        int id = 0;
         public PageIP()
         {
             InitializeComponent();
-            Configuracao configuracao = new Configuracao();
-            Configuracao configuracao_inicial = new Configuracao();
             List<Configuracao> lista_conf = new List<Configuracao>();
             lista_conf= dBConfiguracao.Buscar();
             if(lista_conf != null)
             {
                 foreach(var i in lista_conf)
                 {
+                    id = i.config_id;
                     txt_ip.Text = i.config_ip;
                     txt_porta.Text = i.config_porta;
                 }
+                vazia = false;
             }
+            else
+            {
+                vazia = true;
+            }
+
             txt_ip.Focus();
         }
 
@@ -48,15 +54,26 @@ namespace ColetorAPP.Views
                 }
                 else
                 {
+                    if(vazia == true)
+                    {
                         configuracao.config_porta = txt_porta.Text;
                         configuracao.config_ip = txt_ip.Text;
                         dBConfiguracao.Inserir(configuracao);
-                    await Navigation.PushModalAsync(new PageLogin());
+                        await Navigation.PushModalAsync(new PageLogin());
+                    }
+                    else
+                    {
+                        configuracao.config_id = id;
+                        configuracao.config_porta = txt_porta.Text;
+                        configuracao.config_ip = txt_ip.Text;
+                        dBConfiguracao.Alterar(configuracao);
+                        await Navigation.PushModalAsync(new PageLogin());
+                    }
                 }
             }
             catch(Exception ex)
             {
-                await DisplayAlert("Aviso", "Endereço IP ou Porta Inválida", "ok");
+                await DisplayAlert("Aviso", "Erro ao conectar no Servidor", "ok");
             }
         }
     }

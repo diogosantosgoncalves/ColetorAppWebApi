@@ -16,6 +16,8 @@ namespace ColetorAPP.Views
     public partial class PageLogin : ContentPage
     {
         DataServiceUsuario dataServiceUsuario = new DataServiceUsuario();
+        DataServiceSetorUsuario dataServiceSetorUsuario = new DataServiceSetorUsuario();
+        
         public PageLogin()
         {
             InitializeComponent();
@@ -25,8 +27,9 @@ namespace ColetorAPP.Views
         }
         private async void Verificar_Usuario(object sender, EventArgs e)
         {
+            List<String> setores = new List<string>();
             bool achou = false;
-            ModelUsuario usu = new ModelUsuario();
+            Usuario usu = new Usuario();
             usu.Nome = txt_login.Text;
             usu.Senha = txt_senha.Text;
             if (string.IsNullOrEmpty(usu.Nome))
@@ -48,6 +51,14 @@ namespace ColetorAPP.Views
             {
                 await DisplayAlert("Aviso!", "Bem Vindo ao Aplicativo!", "ok");
                 await Navigation.PushModalAsync(new PagePrincipal());
+
+                setores = await dataServiceSetorUsuario.GetPermissao(usu.Nome);
+                foreach (var i in setores)
+                {
+                    await DisplayAlert("Aviso!","Setor Autorizado: " + i.ToString(), "ok");
+                    Globais.Setores.Add(i);
+                }
+                
             }
             else
             {
@@ -77,7 +88,7 @@ namespace ColetorAPP.Views
         }
         private void cadastrar_Usuario(object sender, EventArgs e)
         {
-            ModelUsuario usu = new ModelUsuario();
+            Usuario usu = new Usuario();
             usu.Nome = txt_login.Text;
             usu.Senha = txt_senha.Text;
             if (string.IsNullOrEmpty(usu.Nome))
@@ -91,7 +102,6 @@ namespace ColetorAPP.Views
                 return;
             }
             ServicesDBUsuario dbUsu = new ServicesDBUsuario(App.DbPath);
-            //List<ModelUsuario> lista = new List<ModelUsuario>();
             int lista = dbUsu.LocalizarUsuario(usu);
             if (lista == 0)
             {

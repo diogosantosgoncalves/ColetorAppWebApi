@@ -12,7 +12,7 @@ namespace ColetorAPP.Services
     {
         HttpClient httpClient = new HttpClient();
 
-        public async Task<bool> GetBuscar_Usuario(ModelUsuario modelUsuario)
+        public async Task<bool> GetBuscar_Usuario(Usuario modelUsuario)
         {
             try
             {
