@@ -20,7 +20,7 @@
            VerticalOptions="CenterAndExpand" FontSize="32" Margin="8" FontAttributes="Bold"/>-->
             <StackLayout>
                 <Label Text="Login: " FontSize="30" HorizontalOptions="Center" />
-                <Entry x:Name="txt_login" Placeholder="Digite seu Login" HorizontalTextAlignment="Center" FontSize="25" Margin="25" TextColor="White" />
+                <Entry x:Name="txt_login" Placeholder="Digite seu o Login" HorizontalTextAlignment="Center" FontSize="25" Margin="25" TextColor="White" />
             </StackLayout>
             <StackLayout>
                 <Label Text="Senha: " FontSize="30" HorizontalOptions="Center" />
