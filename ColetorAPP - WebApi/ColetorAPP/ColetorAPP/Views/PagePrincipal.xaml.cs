@@ -17,10 +17,20 @@ namespace ColetorAPP.Views
         DataServiceProduto DataServiceProduto = new DataServiceProduto();
         DataServiceMovimentoProduto dataServiceMovimentoProduto = new DataServiceMovimentoProduto();
         DataServiceInventario dataServiceInventario = new DataServiceInventario();
+        ServicesDBConfiguracao dBConfiguracao = new ServicesDBConfiguracao(App.DbPath);
         SQLiteConnection conn;
+        int codigo;
         public PagePrincipal()
         {
             InitializeComponent();
+            if (Globais.contagem_ativa)
+            {
+                Habilitar_Botoes();
+            }
+            else
+            {
+                Desabilitar_Botoes();
+            }
             //testeDB.Text = App.DbPath;
             Detail = new PageHome();
             bt_home_Clicked(new object(), new EventArgs());
@@ -46,10 +56,24 @@ namespace ColetorAPP.Views
         }
         async private void bt_Iniciar_Contagem(object sender, EventArgs e)
         {
-            Globais.Codigo_Inventario = await dataServiceInventario.BuscarInventarioAberto();
+            codigo = await dataServiceInventario.BuscarInventarioAberto();
+            if (codigo == 0)
+            {
+                await DisplayAlert("Aviso", "Não há Contagens aberta no Servidor", "ok");
+                return;
+            }
+            else
+            {
+                Globais.Codigo_Inventario = codigo;
+            }
 
             List<Produto> produtos = new List<Produto>();
             produtos = await DataServiceProduto.GetTodosProdutos();
+            if(produtos.Count == 0)
+            {
+                await DisplayAlert("Aviso", "Não há produtos no Servidor a ser contado", "ok");
+                return;
+            }
             ServicesDBProduto dBProdutos = new ServicesDBProduto(App.DbPath);
             foreach (var item in produtos)
             {
@@ -76,6 +100,10 @@ namespace ColetorAPP.Views
             Habilitar_Botoes();
             Detail = new NavigationPage(new PageHome());
             IsPresented = false;
+            Configuracao conf = new Configuracao();
+            conf = dBConfiguracao.Buscar();
+            conf.contagem_ativa = true;
+            dBConfiguracao.Alterar(conf);
         }
         private void bt_cadastrar_Clicked(object sender, EventArgs e)
         {
@@ -127,17 +155,18 @@ namespace ColetorAPP.Views
                 await dataServiceMovimentoProduto.SalvarMovimentoProduto(lista_mv);
                 await DisplayAlert("Aviso!","Contagem Fechada!", "ok");
                 Desabilitar_Botoes();
+                Configuracao conf = new Configuracao();
+                conf = dBConfiguracao.Buscar();
+                conf.contagem_ativa = false;
+                dBConfiguracao.Alterar(conf);
+                //ServicesDBConfiguracao.
             }
             catch(Exception ex)
             {
                 await DisplayAlert("Atualizar","Erro ao atualizar produtos","ok");
                 await DisplayAlert("Atualizar", DataServiceProduto.messagem, "ok");
             }
-
-
         }
-
-
         private void bt_scanner_Clicked(object sender, EventArgs e)
         {
             Detail = new NavigationPage(new PageScanner());
@@ -213,6 +242,7 @@ namespace ColetorAPP.Views
         }
         public void Habilitar_Botoes()
         {
+            botao_Iniciar_contagem.IsEnabled = false;
             bt_cadastrar.IsEnabled = true;
             bt_Email.IsEnabled = true;
             bt_exportar_csv.IsEnabled = true;
@@ -224,6 +254,7 @@ namespace ColetorAPP.Views
         }
         public void Desabilitar_Botoes()
         {
+            botao_Iniciar_contagem.IsEnabled = true;
             bt_cadastrar.IsEnabled = false;
             bt_Email.IsEnabled = false;
             bt_exportar_csv.IsEnabled = false;

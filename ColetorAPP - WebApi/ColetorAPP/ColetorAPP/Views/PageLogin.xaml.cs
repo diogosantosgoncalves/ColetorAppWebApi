@@ -21,6 +21,7 @@ namespace ColetorAPP.Views
         public PageLogin()
         {
             InitializeComponent();
+
             
             //MainPage = new NavigationPage(new PagePrincipal());
             //Detail = new PageHome();

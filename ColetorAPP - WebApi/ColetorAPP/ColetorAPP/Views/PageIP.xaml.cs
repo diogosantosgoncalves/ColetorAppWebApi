@@ -21,16 +21,13 @@ namespace ColetorAPP.Views
         public PageIP()
         {
             InitializeComponent();
-            List<Configuracao> lista_conf = new List<Configuracao>();
-            lista_conf= dBConfiguracao.Buscar();
-            if(lista_conf != null)
-            {
-                foreach(var i in lista_conf)
-                {
-                    id = i.config_id;
-                    txt_ip.Text = i.config_ip;
-                    txt_porta.Text = i.config_porta;
-                }
+            Configuracao conf = new Configuracao();
+            conf = dBConfiguracao.Buscar();
+            if(conf != null){ 
+                id = conf.config_id;
+                txt_ip.Text = conf.config_ip;
+                txt_porta.Text = conf.config_porta;
+                Globais.contagem_ativa = conf.contagem_ativa;
                 vazia = false;
             }
             else
@@ -58,6 +55,7 @@ namespace ColetorAPP.Views
                     {
                         configuracao.config_porta = txt_porta.Text;
                         configuracao.config_ip = txt_ip.Text;
+                        configuracao.contagem_ativa = false;
                         dBConfiguracao.Inserir(configuracao);
                         await Navigation.PushModalAsync(new PageLogin());
                     }
@@ -66,6 +64,7 @@ namespace ColetorAPP.Views
                         configuracao.config_id = id;
                         configuracao.config_porta = txt_porta.Text;
                         configuracao.config_ip = txt_ip.Text;
+                        
                         dBConfiguracao.Alterar(configuracao);
                         await Navigation.PushModalAsync(new PageLogin());
                     }

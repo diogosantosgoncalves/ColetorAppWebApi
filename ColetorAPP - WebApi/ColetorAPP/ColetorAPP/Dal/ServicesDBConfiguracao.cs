@@ -42,22 +42,23 @@ namespace ColetorAPP.Services
                 throw new Exception(ex.Message);
             }
         }
-        public List<Configuracao> Buscar()
+        public Configuracao Buscar()
         {
+            Configuracao conf = new Configuracao();
             List<Configuracao> lista = new List<Configuracao>();
             try
             {
               var  m = from p in conn.Table<Configuracao>()
                     where p.config_id == 1
                     select p;
-            lista =  m.ToList();
+            conf =  m.First();
                // StatusMessage = "Encontrou uma nota";
             }
             catch (Exception ex)
             {
                 throw new Exception(string.Format("Erro: {0}", ex.Message));
             }
-            return lista;
+            return conf;
         }
         public void Alterar(Configuracao config)
         {
