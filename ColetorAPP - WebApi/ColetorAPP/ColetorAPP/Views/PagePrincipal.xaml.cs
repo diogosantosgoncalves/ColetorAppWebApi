@@ -243,14 +243,14 @@ namespace ColetorAPP.Views
         public void Habilitar_Botoes()
         {
             botao_Iniciar_contagem.IsEnabled = false;
-            bt_cadastrar.IsEnabled = true;
+            bt_cadastrar.IsEnabled = false;
             bt_Email.IsEnabled = true;
             bt_exportar_csv.IsEnabled = true;
             bt_home.IsEnabled = true;
             bt_ler_csv.IsEnabled = true;
             bt_listar.IsEnabled = true;
             bt_scanner.IsEnabled = true;
-            bt_Tirar_foto.IsEnabled = true;
+            bt_Tirar_foto.IsEnabled = false;
         }
         public void Desabilitar_Botoes()
         {

@@ -17,6 +17,7 @@ namespace ColetorAPP.Views
         public PageCadastrar(Produto nota)
         {
             InitializeComponent();
+
             bt_Salvar.Text = "Alterar";
             txt_Codigo.IsVisible = true;
             bt_Excluir.IsVisible = true;
@@ -65,7 +66,7 @@ namespace ColetorAPP.Views
                     DisplayAlert("Resultado da Operação: ", dBNotas.StatusMessage, "OK");
                 }
                 //MasterDetailPage p = (MasterDetailPage)Application.Current.MainPage;
-                //p.Detail = new NavigationPage(new PageHome());
+                //Detail = new NavigationPage(new PageHome());
                 Navigation.PushModalAsync(new PageHome());
 
             }

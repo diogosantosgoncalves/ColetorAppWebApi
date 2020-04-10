@@ -19,7 +19,7 @@
             </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Label Text="Quantidade: " />
-                <Entry x:Name="txt_Qtde" Keyboard="Plain" Placeholder="Quantidade" IsVisible="False"/>
+                <Entry x:Name="txt_Qtde" Keyboard="Numeric" Placeholder="Quantidade" IsVisible="False"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Label Text="Produto Inativo: " FontSize="Medium" Margin="10" IsEnabled="False"/>

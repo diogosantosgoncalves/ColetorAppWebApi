@@ -14,7 +14,7 @@
                 HorizontalOptions="CenterAndExpand" FontSize="20" />
             <Button Text="Scanner Automático" Clicked="bt_ScannerAutomatico" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Font="40"></Button>
             <Button Text="Scanner Manual" Clicked="bt_ScannerManual" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Font="40"></Button>
-            <Button Clicked="button2_clicked" Text="Focus Button 2" x:Name="bt_focus"/>
+
 
             <StackLayout >
                 <Entry x:Name="txt_qtde" HorizontalOptions="CenterAndExpand" 

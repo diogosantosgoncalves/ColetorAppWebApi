@@ -13,10 +13,10 @@
             </StackLayout>
             <StackLayout>
                 <Label Text="Login: " FontSize="30" HorizontalOptions="Center" />
-                <Entry x:Name="txt_ip"  TextColor="Black" FontAttributes="Bold" Placeholder="Digite o ip do Servidor" HorizontalTextAlignment="Center" FontSize="25" Margin="25" />
+                <Entry x:Name="txt_ip" Keyboard="Numeric"  TextColor="Black" FontAttributes="Bold" Placeholder="Digite o ip do Servidor" HorizontalTextAlignment="Center" FontSize="25" Margin="25" />
             </StackLayout>
             <StackLayout>
-                <Label Text="Senha: " FontSize="30" HorizontalOptions="Center" />
+                <Label Text="Porta: " FontSize="30" HorizontalOptions="Center" />
                 <Entry x:Name="txt_porta" Keyboard="Numeric" TextColor="Black" FontAttributes="Bold" Placeholder="Digite a porta" HorizontalTextAlignment="Center" FontSize="25" />
             </StackLayout  >
             <StackLayout>
@@ -24,7 +24,7 @@
                 BorderColor="Blue" TextColor="White" Clicked="Conectar_Servidor"  BorderWidth="90"/>
             </StackLayout>
             <StackLayout>
-                <Label Margin="0,130,50,0" Text="Versão do sistema: 1.4.3" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="Red" />
+                <Label Margin="0,130,50,0" Text="Versão do sistema: 1.4.10" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="Red" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

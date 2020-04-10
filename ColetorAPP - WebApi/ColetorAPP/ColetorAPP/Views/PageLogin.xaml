@@ -24,13 +24,13 @@
             </StackLayout>
             <StackLayout>
                 <Label Text="Senha: " FontSize="30" HorizontalOptions="Center" />
-                <Entry x:Name="txt_senha" Placeholder="Digite sua Senha" HorizontalTextAlignment="Center" IsPassword="True" FontSize="25" TextColor="White"/>
+                <Entry x:Name="txt_senha" Keyboard="Numeric" Placeholder="Digite sua Senha" HorizontalTextAlignment="Center" IsPassword="True" FontSize="25" TextColor="White"/>
             </StackLayout  >
             <StackLayout>
             <Button Text="Entrar" HorizontalOptions="Center" FontSize="25" FontAttributes="Bold"  
                 BorderColor="Blue" TextColor="White" Clicked="Verificar_Usuario"  BorderWidth="90"/>
-            <Button Text="Cadastrar" HorizontalOptions="Center" FontSize="25" FontAttributes="Bold"  
-                 BorderColor="Blue"  TextColor="White" Clicked="cadastrar_Usuario" BorderWidth="90"/>
+                <!--<Button Text="Cadastrar" HorizontalOptions="Center" FontSize="25" FontAttributes="Bold"  
+                 BorderColor="Blue"  TextColor="White" Clicked="cadastrar_Usuario" BorderWidth="90"/>-->
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

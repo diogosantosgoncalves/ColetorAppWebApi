@@ -13,8 +13,8 @@
                 <Switch x:Name="swFavorito" HorizontalOptions="Start" Toggled="SwFavorito_Toggled"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Entry x:Name="txt_Nota" Placeholder="Digite um produto" 
-                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                <Entry x:Name="txt_Nota" Placeholder="Digite um produto" Keyboard="Numeric"
+                       HorizontalOptions="CenterAndExpand" IsPassword="True" VerticalOptions="CenterAndExpand" />
                 <Button Text="Localizar" x:Name="bt_Localizar" HorizontalOptions="CenterAndExpand" Clicked="bt_Localizar_Clicked" />
 
             </StackLayout>

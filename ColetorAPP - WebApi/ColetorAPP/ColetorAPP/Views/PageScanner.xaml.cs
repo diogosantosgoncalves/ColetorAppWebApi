@@ -26,10 +26,12 @@ namespace ColetorAPP.Views
         {
 
             InitializeComponent();
-            this.Appearing += MainPage_Appearing;
-            this.Disappearing += MainPage_Disappearing;
 
-            bt_focus.Clicked += bt_focus_Clicked;
+            txt_qtde.IsEnabled = false;
+            //this.Appearing += MainPage_Appearing;
+            //this.Disappearing += MainPage_Disappearing;
+
+            //bt_focus.Clicked += bt_focus_Clicked;
 
         }
         void bt_focus_Clicked(object sender, EventArgs e)
@@ -107,7 +109,7 @@ namespace ColetorAPP.Views
                     //nota.Favorito = swFavorito.IsToggled;
 
                     lista_produtos = dBNotas.Localizar(nota.Nome);
-                    if (lista_produtos == null)
+                    if (lista_produtos.Count == 0)
                     {
                         await DisplayAlert("Aviso!", "Produto não encontrado no Banco de Dados", "ok");
                         return;
@@ -181,16 +183,22 @@ namespace ColetorAPP.Views
         private async void bt_ScannerManual(object sender, EventArgs e)
         {
             await ScannerManual();
+            ServicesDBProduto dBNotas = new ServicesDBProduto(App.DbPath);
+            lista_produtos = dBNotas.Localizar(codigo_barra);
+            if (lista_produtos.Count == 0)
+            {
+                await DisplayAlert("Aviso!", "Produto não encontrado no Banco de Dados", "ok");
+                return;
+            }
             List<Produto> lista = new List<Produto>();
-            bt_focus.Clicked += bt_focus_Clicked;
+            //bt_focus.Clicked += bt_focus_Clicked;
             this.Appearing += MainPage_Appearing;
             SoftKeyboard.Current.VisibilityChanged += Current_VisibilityChanged;
             txt_qtde.Focus();
-            txt_qtde.Focus();
             txt_qtde.IsEnabled = true;
 
-            ServicesDBProduto dBNotas = new ServicesDBProduto(App.DbPath);
-            lista = dBNotas.Localizar(codigo_barra);
+            ServicesDBProduto dBNotas1 = new ServicesDBProduto(App.DbPath);
+            lista = dBNotas1.Localizar(codigo_barra);
             if(lista == null)
             {
                 await DisplayAlert("Aviso!", "Produto não encontrado no Banco de Dados", "ok");
@@ -221,20 +229,23 @@ namespace ColetorAPP.Views
                 bt_gravarbanco.IsVisible = true;
                 txt_qtde.Focus();
                 txt_qtde.IsEnabled = true;
+                bt_gravarbanco.IsEnabled = true;
                 this.Appearing += MainPage_Appearing;
                 SoftKeyboard.Current.VisibilityChanged += Current_VisibilityChanged;
                 txt_qtde.Focus();
-                bt_focus.Clicked += bt_focus_Clicked;
+                //bt_focus.Clicked += bt_focus_Clicked;
 
 
             }
             this.Appearing += MainPage_Appearing;
             SoftKeyboard.Current.VisibilityChanged += Current_VisibilityChanged;
             txt_qtde.Focus();
-            bt_focus.Clicked += bt_focus_Clicked;
+            //bt_focus.Clicked += bt_focus_Clicked;
         }
         private void Gravar_banco(object sender, EventArgs e)
         {
+            txt_qtde.IsEnabled = true;
+            bt_gravarbanco.IsEnabled = true;
             int quant = 0;
             Produto nota = new Produto();
             nota.Nome = codigo_barra;
@@ -255,6 +266,9 @@ namespace ColetorAPP.Views
             /////////////////////////////////////////////////////////////////
             //dBNotas.Inserir(nota);
             DependencyService.Get<IMessage>().ShortAlert("Código: " + codigo_barra + " \n Quantidade adicionada: " + txt_qtde.Text);
+            txt_qtde.Text = "";
+            txt_qtde.IsEnabled = false;
+            bt_gravarbanco.IsEnabled = false;
         }
     }
 }
