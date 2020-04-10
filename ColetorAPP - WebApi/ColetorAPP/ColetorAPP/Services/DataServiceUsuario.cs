@@ -38,16 +38,32 @@ namespace ColetorAPP.Services
                 {
                     return false;
                 }
-                    //return lista_produtos;
-                    //if (!response.IsSuccessStatusCode)
-
-                    return true;
-            }catch(Exception ex)
+            }catch (HttpRequestException)
             {
-                throw new Exception();
+                throw new HttpRequestException();
             }
 
-        } 
+        }
+
+        public async Task<bool> GetLogin(String nome,String senha)
+        {
+            try
+            {
+                string ur = "http://" + Globais.Ip + ":" + Globais.Porta;
+                string url = ur + "/api/usuario/?nome=" + nome +"&&senha=" + senha;
+
+                //string url = "http://192.168.18.5:3000/api/usuario";
+                var response = await httpClient.GetStringAsync(url);
+                var resposta = JsonConvert.DeserializeObject<bool>(response);
+                return resposta;
+
+            }
+            catch (HttpRequestException)
+            {
+                throw new HttpRequestException();
+            }
+
+        }
 
     }
 }

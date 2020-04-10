@@ -12,6 +12,7 @@ namespace ColetorAPP
         public static string Ip = "";
         public static string Porta = "";
         public static List<String> Setores = new List<string>();
+        public static int Codigo_Inventario = 0;
     }
     public partial class App : Application
     {

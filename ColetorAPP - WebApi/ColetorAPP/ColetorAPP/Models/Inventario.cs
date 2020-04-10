@@ -6,22 +6,11 @@ using SQLite;
 namespace ColetorAPP.Models
 {
     [Table("Inventario")]
-    class Inventario
+    public class Inventario
     {
         [PrimaryKey, AutoIncrement]
-        public int Inv_Codigo
-        {
-            get;
-            set;
-        }
-        [NotNull]
-        public List<Usuario> Usuario
-        {
-            get;
-            set;
-        }
-        //[ForeignKey(typeof(ModelUsuario))]
-
-        public int EmployeeId { get; set; }
+        public int inv_codigo {get;set;}
+        //public DateTime inv_dtabertura { get; set; }
+        //public DateTime inv_dtfechamento { get; set; }
     }
 }

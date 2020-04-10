@@ -9,7 +9,7 @@
         <StackLayout>
             <StackLayout BackgroundColor="RoyalBlue">
                 <Label FontSize="32" Margin="8" FontAttributes="Bold" TextColor="White"
-                       FontFamily="Arial Black" Text="COLETO APP" HorizontalTextAlignment="Center" />
+                       FontFamily="Arial Black" Text="COLETOR APP" HorizontalTextAlignment="Center" />
             </StackLayout>
             <StackLayout>
                 <Label Text="Login: " FontSize="30" HorizontalOptions="Center" />
@@ -24,7 +24,7 @@
                 BorderColor="Blue" TextColor="White" Clicked="Conectar_Servidor"  BorderWidth="90"/>
             </StackLayout>
             <StackLayout>
-                <Label Margin="0,150,90,0" Text="Versão do sistema: 1.3.24" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="Red" />
+                <Label Margin="0,130,50,0" Text="Versão do sistema: 1.4.3" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="Red" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

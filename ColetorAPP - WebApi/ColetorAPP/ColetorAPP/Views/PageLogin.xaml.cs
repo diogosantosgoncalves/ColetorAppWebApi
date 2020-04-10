@@ -45,7 +45,8 @@ namespace ColetorAPP.Views
             ServicesDBUsuario dbUsu = new ServicesDBUsuario(App.DbPath);
 
 
-            achou = await dataServiceUsuario.GetBuscar_Usuario(usu);
+            achou = await dataServiceUsuario.GetLogin(usu.Nome, usu.Senha);
+            //achou = await dataServiceUsuario.GetBuscar_Usuario(usu);
             //bool acho1u= DataServiceUsuario.GetBuscar_Usuario(usu);
             if(achou == true)
             {
@@ -65,26 +66,6 @@ namespace ColetorAPP.Views
                 await DisplayAlert("Aviso!", "Usuário ou Senha Incorreto!", "ok");
                 return;
             }
-            /*/
-            int lista = dbUsu.LocalizarUsuario(usu);
-            if (lista == 0)
-            {
-                
-                await DisplayAlert("Aviso!", "Usuário ou Senha Incorreto!", "ok");
-                return;
-                //Navigation.PushModalAsync(new PagePrincipal());
-            }
-            else
-            {
-                DisplayAlert("Aviso!", "Bem Vindo ao Aplicativo!", "ok");
-                Navigation.PushModalAsync(new PageSetor());
-            }
-            */
-            //Navigation.PushModalAsync(new PagePrincipal());
-            //MasterDetailPage p = (MasterDetailPage)Application.Current.MainPage;
-            //p.Detail = new NavigationPage(new PageScanner());
-            //MainPage = new PageLogin();
-
         }
         private void cadastrar_Usuario(object sender, EventArgs e)
         {

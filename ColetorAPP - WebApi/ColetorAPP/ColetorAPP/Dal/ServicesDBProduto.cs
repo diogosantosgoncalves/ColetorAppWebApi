@@ -72,19 +72,27 @@ namespace ColetorAPP.Services
 
         public List<Produto> Listar()
         {
-            List<Produto> lista = new List<Produto>();
+            //List<Produto> lista = new List<Produto>();
             try
             {
-                lista = conn.Table<Produto>().ToList();
+                //lista = conn.Table<Produto>().ToList();
+                var lista = conn.Table<Produto>().Where(c => c.Inativo == false).ToList();
 
-                this.StatusMessage = "listagem de notas";
+                //var lista = from cust in conn.Table<Produto>()
+                //            where cust.Inativo == true
+                //           select cust;
+                //
+
+                //return conexaoSQLite.Table<Cliente>().OrderBy(c => c.Nome).ToList();
+                return lista;
+                this.StatusMessage = "listagem de Produtos";
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
 
             }
-            return lista;
+            //return lista;
         }
         public void Alterar(Produto notas)
         {

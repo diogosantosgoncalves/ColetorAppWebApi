@@ -15,6 +15,8 @@ namespace ColetorAPP.Views
     public partial class PagePrincipal : MasterDetailPage
     {
         DataServiceProduto DataServiceProduto = new DataServiceProduto();
+        DataServiceMovimentoProduto dataServiceMovimentoProduto = new DataServiceMovimentoProduto();
+        DataServiceInventario dataServiceInventario = new DataServiceInventario();
         SQLiteConnection conn;
         public PagePrincipal()
         {
@@ -44,6 +46,7 @@ namespace ColetorAPP.Views
         }
         async private void bt_Iniciar_Contagem(object sender, EventArgs e)
         {
+            Globais.Codigo_Inventario = await dataServiceInventario.BuscarInventarioAberto();
 
             List<Produto> produtos = new List<Produto>();
             produtos = await DataServiceProduto.GetTodosProdutos();
@@ -69,8 +72,6 @@ namespace ColetorAPP.Views
                 }    
             }
 
-            //servicesDBProduto.Inserir();
-            await DisplayAlert("Importação", "Produtos Atualizados produtos", "ok");
             await DisplayAlert("Importação", "Produtos Atualizados: " + produtos.Count.ToString(), "ok");
             Habilitar_Botoes();
             Detail = new NavigationPage(new PageHome());
@@ -91,25 +92,40 @@ namespace ColetorAPP.Views
         {
             try
             {
+                //dBProdutos.Listar();
+                
                 List<Produto> lista_produtos = new List<Produto>();
                 Produto produto = new Produto();
+                MovimentoProduto mv_produto;
+                List<MovimentoProduto> lista_mv = new List<MovimentoProduto>();
+
                 ServicesDBProduto dBProdutos = new ServicesDBProduto(App.DbPath);
 
                 lista_produtos = dBProdutos.Listar();
                 foreach (var item in lista_produtos)
                 {
-                    produto.Id = item.Id;
-                    produto.Nome = item.Nome;
-                    produto.Setor = item.Setor;
-                    produto.Quantidade = item.Quantidade;
-                    //produto.Inativo = item.Inativo;
-                    await DataServiceProduto.Atualiza_Produto(item.Id, produto);
+                    //movimento produto
+                    mv_produto = new MovimentoProduto();
+                    mv_produto.mp_inventario = Globais.Codigo_Inventario;
+                    mv_produto.mp_produto = item.Nome;
+                    mv_produto.mp_quant = item.Quantidade;
+                    lista_mv.Add(mv_produto);
 
-                    produto.Inativo = true;
-                    dBProdutos.Alterar(produto);
+                    //modo antigo
+                    //produto.Id = item.Id;
+                    //produto.Nome = item.Nome;
+                    //produto.Setor = item.Setor;
+                    //produto.Quantidade = item.Quantidade;
+                    //produto.Inativo = item.Inativo;
+                    //await DataServiceProduto.Atualiza_Produto(item.Id, produto);
+
+                    //produto.Inativo = true;
+                    //dBProdutos.Alterar(produto);
 
                 }
-                await DisplayAlert("Atualizado no Servidor: ", lista_produtos.Count.ToString() + " Produtos", "ok");
+                //await DisplayAlert("Atualizado no Servidor: ", lista_produtos.Count.ToString() + " Produtos", "ok");
+                await dataServiceMovimentoProduto.SalvarMovimentoProduto(lista_mv);
+                await DisplayAlert("Aviso!","Contagem Fechada!", "ok");
                 Desabilitar_Botoes();
             }
             catch(Exception ex)
