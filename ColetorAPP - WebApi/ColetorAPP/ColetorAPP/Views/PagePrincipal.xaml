@@ -11,7 +11,7 @@
             <StackLayout Margin="5,0,0,0">
                 <!-- <Image Source="android" HorizontalOptions="Center" /> -->
 
-                <Label Text="Coletor" FontSize="Large" HorizontalOptions="Center" 
+                <Label Text="Coletor 1.12.7" FontSize="Large" HorizontalOptions="Center" 
                        Margin="0,0,0,5"/>
                 <StackLayout Orientation="Horizontal">
                     <Image Source="semimagem" WidthRequest="200" HeightRequest="150"
@@ -32,11 +32,11 @@
                     <Button x:Name="botao_Iniciar_contagem" Text="Iniciar contagem" 
                             Clicked="bt_Iniciar_Contagem" HorizontalOptions="FillAndExpand"/>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal">
+                <!--<StackLayout Orientation="Horizontal">
                     <Image Source="Cadastrar"/>
                     <Button x:Name="bt_cadastrar" Text="Cadastrar" 
                             Clicked="bt_cadastrar_Clicked" HorizontalOptions="FillAndExpand" IsEnabled="False"/>
-                </StackLayout>
+                </StackLayout>-->
                 <StackLayout Orientation="Horizontal">
                     <Image Source="localizar1"/>
                     <Button x:Name="bt_listar" Text="Localizar" 
@@ -53,11 +53,11 @@
                     <Button x:Name="bt_exportar_csv" Text="Exportar CSV" 
                             Clicked="bt_exportar_csv_Clicked" HorizontalOptions="FillAndExpand" IsEnabled="False"/>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal">
+                <!--<StackLayout Orientation="Horizontal">
                     <Image Source="photo"/>
                     <Button x:Name="bt_Tirar_foto" Text="Tirar Foto" 
                             Clicked="bt_TirarFoto" HorizontalOptions="FillAndExpand" IsEnabled="False"/>
-                </StackLayout>
+                </StackLayout>-->
                 <StackLayout Orientation="Horizontal">
                     <Image Source="email"/>
                     <Button x:Name="bt_Email" Text="Enviar Email" 

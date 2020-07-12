@@ -41,9 +41,6 @@ namespace ColetorAPP.Services
             {
                 string ur = "http://" + Globais.Ip + ":" + Globais.Porta;
                 string url = ur + "/api/produtos";
-                //string url = "http:192.168.18.5:3000/api/produtos/{0}";
-                //var uri = new Uri(string.Format(url, id));
-
                 //string url = "http://192.168.18.5:3000/api/produtos";
                 var data = JsonConvert.SerializeObject(produto);
                 var content = new StringContent(data, Encoding.UTF8, "application/json");

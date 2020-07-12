@@ -10,10 +10,7 @@ namespace ColetorAPP.Views
         public PageHome()
         {
             InitializeComponent();
-
         }
-
-
     private void tap_IniciarScanner(object sender, System.EventArgs e)
         {
             //MasterDetailPage p = (MasterDetailPage)Application.Current.MainPage;

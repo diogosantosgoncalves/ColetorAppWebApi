@@ -55,12 +55,6 @@ namespace ColetorAPP.Views
             var file = await CrossMedia.Current.PickPhotoAsync();
             if (file == null)
                 return;
-            /*MinhaImagem.Source = ImageSource.FromStream(() =>
-            {
-                var stream = file.GetStream();
-                file.Dispose();
-                return stream;
-            });*/
             await Navigation.PushModalAsync(new PagePrincipal(file));
 
         }

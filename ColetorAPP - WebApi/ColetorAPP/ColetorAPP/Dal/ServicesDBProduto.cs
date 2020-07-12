@@ -51,6 +51,7 @@ namespace ColetorAPP.Services
                 //{
                 //    throw new Exception("Quantidade de produtos não informado!");
                 //}
+                
                 int result = conn.Insert(nota);
                 if (result != 0)
                 {
@@ -111,6 +112,7 @@ namespace ColetorAPP.Services
                     throw new Exception("Id da nota não informado!");
                 }
                 int result = conn.Update(notas);
+                
                 StatusMessage = string.Format("{0} Registros alterados!", result);
             }
             catch (Exception ex)

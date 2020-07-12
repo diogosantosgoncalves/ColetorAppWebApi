@@ -14,7 +14,7 @@
             </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Entry x:Name="txt_Nota" Placeholder="Digite um produto" Keyboard="Numeric"
-                       HorizontalOptions="CenterAndExpand" IsPassword="True" VerticalOptions="CenterAndExpand" />
+                       HorizontalOptions="CenterAndExpand"  VerticalOptions="CenterAndExpand" />
                 <Button Text="Localizar" x:Name="bt_Localizar" HorizontalOptions="CenterAndExpand" Clicked="bt_Localizar_Clicked" />
 
             </StackLayout>

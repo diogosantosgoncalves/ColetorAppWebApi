@@ -21,8 +21,6 @@ namespace ColetorAPP.Views
         public PageLogin()
         {
             InitializeComponent();
-
-            
             //MainPage = new NavigationPage(new PagePrincipal());
             //Detail = new PageHome();
         }
@@ -60,7 +58,6 @@ namespace ColetorAPP.Views
                     await DisplayAlert("Aviso!","Setor Autorizado: " + i.ToString(), "ok");
                     Globais.Setores.Add(i);
                 }
-                
             }
             else
             {

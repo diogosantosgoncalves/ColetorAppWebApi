@@ -25,10 +25,13 @@
                         <effects:KeyboardEnableEffect/>
                     </Entry.Effects>
                 </Entry>
-                
 
                 <Button HorizontalOptions="CenterAndExpand" Text="Confirmar" 
                 Clicked="Gravar_banco" IsVisible="False" x:Name="bt_gravarbanco" FontSize="20" />
+            </StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand">
+                <Image Source="home"/>
+                <Button Text="Inicio" Clicked="Button_Clicked" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" Font="15"></Button>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

@@ -10,6 +10,7 @@ namespace ColetorAPP.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageCadastrar : ContentPage
     {
+        ServicesDBProduto dBNotas = new ServicesDBProduto(App.DbPath);
         public PageCadastrar()
         {
             InitializeComponent();
@@ -40,7 +41,7 @@ namespace ColetorAPP.Views
                 nota.Setor = txt_Dados.Text;
                 nota.Quantidade = Convert.ToInt32(txt_Qtde.Text.ToString());
                 nota.Inativo = swFavorito.IsToggled;
-                ServicesDBProduto dBNotas = new ServicesDBProduto(App.DbPath);
+
 
                 if(txt_Titulo.Text == null)
                 {

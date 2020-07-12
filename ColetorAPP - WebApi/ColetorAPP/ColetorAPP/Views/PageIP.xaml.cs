@@ -21,21 +21,39 @@ namespace ColetorAPP.Views
         public PageIP()
         {
             InitializeComponent();
-            Configuracao conf = new Configuracao();
-            conf = dBConfiguracao.Buscar();
-            if(conf != null){ 
-                id = conf.config_id;
-                txt_ip.Text = conf.config_ip;
-                txt_porta.Text = conf.config_porta;
-                Globais.contagem_ativa = conf.contagem_ativa;
+            //Configuracao configuracao =  dBConfiguracao.Buscar_Config();
+
+            List<Configuracao> list_conf = dBConfiguracao.Buscar();
+            if (list_conf != null)
+            {
+                foreach (var i in list_conf)
+                {
+                    id = i.config_id;
+                    txt_ip.Text = i.config_ip;
+                    txt_porta.Text = i.config_porta;
+                    Globais.contagem_ativa = i.contagem_ativa;
+                }
                 vazia = false;
             }
             else
             {
                 vazia = true;
             }
-
             txt_ip.Focus();
+            //if(conf != null){ 
+            //    id = conf.config_id;
+            //   txt_ip.Text = conf.config_ip;
+            //   txt_porta.Text = conf.config_porta;
+            //  Globais.contagem_ativa = conf.contagem_ativa;
+            //  if (dataServiceProduto.GetTodosProdutos() != null)
+            // {
+            //      Globais.Ip = txt_ip.Text;
+            //      Globais.Porta = txt_porta.Text;
+            //      Navigation.PushModalAsync(new PageLogin());
+            // }
+            ///
+            //       }
+            //         txt_ip.Focus();
         }
 
         private async void Conectar_Servidor(object sender, EventArgs e)
@@ -51,7 +69,7 @@ namespace ColetorAPP.Views
                 }
                 else
                 {
-                    if(vazia == true)
+                    if(vazia)
                     {
                         configuracao.config_porta = txt_porta.Text;
                         configuracao.config_ip = txt_ip.Text;
@@ -72,7 +90,7 @@ namespace ColetorAPP.Views
             }
             catch(Exception ex)
             {
-                await DisplayAlert("Aviso", "Erro ao conectar no Servidor", "ok");
+                await DisplayAlert("Aviso", "Erro ao conectar no Servidor; " + ex.Message, "ok");
             }
         }
     }

@@ -86,12 +86,14 @@ namespace ColetorAPP.Views
                 produto.Inativo = false;
                 //produto.Inativo = item.Inativo;
                 produto.setor_id = item.setor_id;
+                dBProdutos.Alterar(produto);
                 if (dBProdutos.Localizar(produto.Nome).Count == 0)
                 {
                     dBProdutos.Inserir(produto);
                 }
                 else
                 {
+                    produto.Inativo = false;
                     dBProdutos.Alterar(produto);
                 }    
             }
@@ -100,10 +102,14 @@ namespace ColetorAPP.Views
             Habilitar_Botoes();
             Detail = new NavigationPage(new PageHome());
             IsPresented = false;
-            Configuracao conf = new Configuracao();
+            List<Configuracao> conf = new List<Configuracao>();
+
             conf = dBConfiguracao.Buscar();
-            conf.contagem_ativa = true;
-            dBConfiguracao.Alterar(conf);
+            foreach (var i in conf)
+            {
+                i.contagem_ativa = true;
+                dBConfiguracao.Alterar(i);
+            }
         }
         private void bt_cadastrar_Clicked(object sender, EventArgs e)
         {
@@ -120,8 +126,6 @@ namespace ColetorAPP.Views
         {
             try
             {
-                //dBProdutos.Listar();
-                
                 List<Produto> lista_produtos = new List<Produto>();
                 Produto produto = new Produto();
                 MovimentoProduto mv_produto;
@@ -139,27 +143,23 @@ namespace ColetorAPP.Views
                     mv_produto.mp_quant = item.Quantidade;
                     lista_mv.Add(mv_produto);
 
-                    //modo antigo
-                    //produto.Id = item.Id;
-                    //produto.Nome = item.Nome;
-                    //produto.Setor = item.Setor;
-                    //produto.Quantidade = item.Quantidade;
-                    //produto.Inativo = item.Inativo;
-                    //await DataServiceProduto.Atualiza_Produto(item.Id, produto);
-
-                    //produto.Inativo = true;
-                    //dBProdutos.Alterar(produto);
-
+                    //Coloca Zero nas quantidades de produtos e inativa
+                    item.Quantidade = 0;
+                    item.Inativo = true;
+                    dBProdutos.Alterar(item);
                 }
+
                 //await DisplayAlert("Atualizado no Servidor: ", lista_produtos.Count.ToString() + " Produtos", "ok");
                 await dataServiceMovimentoProduto.SalvarMovimentoProduto(lista_mv);
                 await DisplayAlert("Aviso!","Contagem Fechada!", "ok");
                 Desabilitar_Botoes();
-                Configuracao conf = new Configuracao();
+                List<Configuracao> conf = new List<Configuracao>();
                 conf = dBConfiguracao.Buscar();
-                conf.contagem_ativa = false;
-                dBConfiguracao.Alterar(conf);
-                //ServicesDBConfiguracao.
+                foreach (var i in conf)
+                {
+                    i.contagem_ativa = false;
+                    dBConfiguracao.Alterar(i);
+                }
             }
             catch(Exception ex)
             {
@@ -243,26 +243,26 @@ namespace ColetorAPP.Views
         public void Habilitar_Botoes()
         {
             botao_Iniciar_contagem.IsEnabled = false;
-            bt_cadastrar.IsEnabled = false;
+            //bt_cadastrar.IsEnabled = false;
             bt_Email.IsEnabled = true;
             bt_exportar_csv.IsEnabled = true;
             bt_home.IsEnabled = true;
             bt_ler_csv.IsEnabled = true;
             bt_listar.IsEnabled = true;
             bt_scanner.IsEnabled = true;
-            bt_Tirar_foto.IsEnabled = false;
+            //bt_Tirar_foto.IsEnabled = false;
         }
         public void Desabilitar_Botoes()
         {
             botao_Iniciar_contagem.IsEnabled = true;
-            bt_cadastrar.IsEnabled = false;
+            //bt_cadastrar.IsEnabled = false;
             bt_Email.IsEnabled = false;
             bt_exportar_csv.IsEnabled = false;
             bt_home.IsEnabled = false;
             bt_ler_csv.IsEnabled = false;
             bt_listar.IsEnabled = false;
             bt_scanner.IsEnabled = false;
-            bt_Tirar_foto.IsEnabled = false;
+            //bt_Tirar_foto.IsEnabled = false;
         }
     }
 }

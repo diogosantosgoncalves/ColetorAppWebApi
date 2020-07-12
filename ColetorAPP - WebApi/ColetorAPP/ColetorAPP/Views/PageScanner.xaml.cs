@@ -24,23 +24,17 @@ namespace ColetorAPP.Views
         List<Produto> lista_produtos;
         public PageScanner()
         {
-
             InitializeComponent();
 
             txt_qtde.IsEnabled = false;
             //this.Appearing += MainPage_Appearing;
             //this.Disappearing += MainPage_Disappearing;
-
             //bt_focus.Clicked += bt_focus_Clicked;
-
         }
         void bt_focus_Clicked(object sender, EventArgs e)
         {
             txt_qtde.Focus();
         }
-
-
-
         private void button1_Click(object sender, EventArgs e)
         {
            
@@ -63,12 +57,10 @@ namespace ColetorAPP.Views
             if (e.IsVisible)
             {
                 // do your things
-
             }
             else
             {
                 // do your things
-
             }
         }
 
@@ -85,7 +77,7 @@ namespace ColetorAPP.Views
             }
             //MasterDetailPage p = (MasterDetailPage)Application.Current.MainPage;
             //p.Detail = new NavigationPage(new PageHome());
-            //await Navigation.PushModalAsync(new PageScanner());
+            await Navigation.PushModalAsync(new PageScanner()); 
         }
         private async Task ScannerAutomatico()
         {
@@ -269,6 +261,15 @@ namespace ColetorAPP.Views
             txt_qtde.Text = "";
             txt_qtde.IsEnabled = false;
             bt_gravarbanco.IsEnabled = false;
+        }
+        private void bt_home_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new PageListar());
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new PageHome());
         }
     }
 }
