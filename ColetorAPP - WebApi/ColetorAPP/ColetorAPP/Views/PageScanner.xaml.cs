@@ -264,12 +264,15 @@ namespace ColetorAPP.Views
         }
         private void bt_home_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new PageListar());
+            //Navigation.PushModalAsync(new PageHome());
+            Navigation.PopModalAsync();
+            //Navigation.PushModalAsync(new PagePrincipal());
+
         }
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new PageHome());
+            Navigation.PushModalAsync(new PagePrincipal());
         }
     }
 }

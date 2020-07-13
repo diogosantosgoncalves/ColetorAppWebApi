@@ -16,6 +16,11 @@ namespace ColetorAPP.Views
             //MasterDetailPage p = (MasterDetailPage)Application.Current.MainPage;
             //p.Detail = new NavigationPage(new PageScanner());
             //p.IsPresented = false;
+            if(Globais.contagem_ativa == false)
+            {
+                DisplayAlert("Aviso","A Contagem precisa estar Ativa!","ok");
+                return;
+            }
             Navigation.PushModalAsync(new PageScanner());
         }
 

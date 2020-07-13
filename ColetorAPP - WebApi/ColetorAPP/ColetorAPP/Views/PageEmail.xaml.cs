@@ -56,7 +56,8 @@ namespace ColetorAPP.Views
             sendEmail.SendEmail(email);
             //IEmailAttachment.Equals(email);
             DisplayAlert("Aviso","Mensagem Enviada!","OK!");
-
+            txt_assunto.Text = "";
+            txt_mensagem.Text = "";
         }
 
         async void EnviarEmail(object sender, EventArgs e)

@@ -110,6 +110,7 @@ namespace ColetorAPP.Views
                 i.contagem_ativa = true;
                 dBConfiguracao.Alterar(i);
             }
+            Globais.contagem_ativa = true;
         }
         private void bt_cadastrar_Clicked(object sender, EventArgs e)
         {
@@ -160,6 +161,7 @@ namespace ColetorAPP.Views
                     i.contagem_ativa = false;
                     dBConfiguracao.Alterar(i);
                 }
+                Globais.contagem_ativa = false;
             }
             catch(Exception ex)
             {
@@ -181,7 +183,7 @@ namespace ColetorAPP.Views
             var logFilePath = Path.Combine(DependencyService.Get<IPathService>().PrivateExternalFolder, "produtos.csv");
             conn = new SQLiteConnection(App.DbPath);
             conn.CreateTable<Produto>();
-            List<Produto> prod = conn.Table<Produto>().ToList();
+            List<Produto> prod = conn.Table<Produto>().Where(n => n.Inativo == false).ToList();
             using (StreamWriter sw = File.CreateText(logFilePath))
             {
                 foreach (var linha in prod)

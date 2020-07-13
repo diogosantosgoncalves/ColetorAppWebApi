@@ -24,7 +24,8 @@ namespace ColetorAPP.Views
             //Configuracao configuracao =  dBConfiguracao.Buscar_Config();
 
             List<Configuracao> list_conf = dBConfiguracao.Buscar();
-            if (list_conf != null)
+            //if (list_conf != null)
+            if (list_conf.Count != 0)
             {
                 foreach (var i in list_conf)
                 {
@@ -73,7 +74,7 @@ namespace ColetorAPP.Views
                     {
                         configuracao.config_porta = txt_porta.Text;
                         configuracao.config_ip = txt_ip.Text;
-                        configuracao.contagem_ativa = false;
+                        //configuracao.contagem_ativa = false;
                         dBConfiguracao.Inserir(configuracao);
                         await Navigation.PushModalAsync(new PageLogin());
                     }
