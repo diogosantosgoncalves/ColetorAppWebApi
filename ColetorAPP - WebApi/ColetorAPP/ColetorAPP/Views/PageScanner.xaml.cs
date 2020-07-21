@@ -22,11 +22,13 @@ namespace ColetorAPP.Views
         int resultado = 1;
         public string codigo_barra;
         List<Produto> lista_produtos;
+        ServicesDBProduto dBNotas = new ServicesDBProduto(App.DbPath);
         public PageScanner()
         {
             InitializeComponent();
 
             txt_qtde.IsEnabled = false;
+            txt_qtde.IsVisible = false;
             //this.Appearing += MainPage_Appearing;
             //this.Disappearing += MainPage_Disappearing;
             //bt_focus.Clicked += bt_focus_Clicked;
@@ -71,14 +73,17 @@ namespace ColetorAPP.Views
 
         private async void bt_ScannerAutomatico(object sender, EventArgs e) {
             //=> 
+            resultado = 1;
             while (resultado == 1)
             {
                 await ScannerAutomatico();
             }
             //MasterDetailPage p = (MasterDetailPage)Application.Current.MainPage;
             //p.Detail = new NavigationPage(new PageHome());
-            await Navigation.PushModalAsync(new PageScanner()); 
+            //await Navigation.PopModalAsync();
+            //await Navigation.PushModalAsync(new PageScanner()); 
         }
+
         private async Task ScannerAutomatico()
         {
             int quant = 0;
@@ -93,7 +98,7 @@ namespace ColetorAPP.Views
                     Vibration.Vibrate();
                     var duration = TimeSpan.FromSeconds(1);
                     Vibration.Vibrate(duration);
-                    ServicesDBProduto dBNotas = new ServicesDBProduto(App.DbPath);
+
                     Produto nota = new Produto();
                     nota.Nome = QrCode.ToString();
                     nota.Setor = "teste";
@@ -231,7 +236,9 @@ namespace ColetorAPP.Views
             }
             this.Appearing += MainPage_Appearing;
             SoftKeyboard.Current.VisibilityChanged += Current_VisibilityChanged;
+            txt_qtde.IsVisible = true;
             txt_qtde.Focus();
+
             //bt_focus.Clicked += bt_focus_Clicked;
         }
         private void Gravar_banco(object sender, EventArgs e)
@@ -261,18 +268,12 @@ namespace ColetorAPP.Views
             txt_qtde.Text = "";
             txt_qtde.IsEnabled = false;
             bt_gravarbanco.IsEnabled = false;
-        }
-        private void bt_home_Clicked(object sender, EventArgs e)
-        {
-            //Navigation.PushModalAsync(new PageHome());
-            Navigation.PopModalAsync();
-            //Navigation.PushModalAsync(new PagePrincipal());
-
+            txt_qtde.IsVisible = false;
         }
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new PagePrincipal());
+            Navigation.PopAsync();
         }
     }
 }

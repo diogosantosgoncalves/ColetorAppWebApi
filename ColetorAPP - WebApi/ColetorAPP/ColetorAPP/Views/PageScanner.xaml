@@ -6,7 +6,7 @@
              xmlns:effects="clr-namespace:Xamarin.KeyboardHelper;assembly=Xamarin.KeyboardHelper"
              mc:Ignorable="d"
              xmlns:local="clr-namespace:ColetorAPP.Views"
-             x:Class="ColetorAPP.Views.PageScanner">
+             x:Class="ColetorAPP.Views.PageScanner" Title="Página de Scanner">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Clique no botão para iniciar a leitura!"

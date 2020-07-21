@@ -77,25 +77,29 @@ namespace ColetorAPP.Views
             ServicesDBProduto dBProdutos = new ServicesDBProduto(App.DbPath);
             foreach (var item in produtos)
             {
-                Produto produto = new Produto();
-                produto.Id = item.Id;
-                produto.Nome = item.Nome;
-                produto.Setor = item.Setor;
-                produto.Quantidade = 0;
-                //produto.Quantidade = item.Quantidade;
-                produto.Inativo = false;
-                //produto.Inativo = item.Inativo;
-                produto.setor_id = item.setor_id;
-                dBProdutos.Alterar(produto);
-                if (dBProdutos.Localizar(produto.Nome).Count == 0)
+                if (dBProdutos.BuscarProdutoPorCodigo(item.Id) != 0)
                 {
-                    dBProdutos.Inserir(produto);
+                    Produto produto = new Produto();
+                    produto.Id = item.Id;
+                    produto.Nome = item.Nome;
+                    produto.Setor = item.Setor;
+                    produto.Quantidade = 0;
+                    produto.Inativo = false;
+                    produto.setor_id = item.setor_id;
+                    dBProdutos.Alterar(produto);
                 }
                 else
                 {
+                    Produto produto = new Produto();
+                    produto.Id = item.Id;
+                    produto.Nome = item.Nome;
+                    produto.Setor = item.Setor;
+                    produto.Quantidade = 0;
                     produto.Inativo = false;
-                    dBProdutos.Alterar(produto);
-                }    
+                    produto.setor_id = item.setor_id;
+                    dBProdutos.Inserir(produto);
+                }
+                
             }
 
             await DisplayAlert("Importação", "Produtos Atualizados: " + produtos.Count.ToString(), "ok");
@@ -120,8 +124,9 @@ namespace ColetorAPP.Views
 
         private void bt_listar_Clicked(object sender, EventArgs e)
         {
-            Detail = new NavigationPage(new PageListar());
-            IsPresented = false;
+            //Detail = new NavigationPage(new PageListar());
+            //IsPresented = false;
+            Navigation.PushAsync(new PageListar());
         }
         private async void bt_FecharContagem(object sender, EventArgs e)
         {
@@ -247,10 +252,10 @@ namespace ColetorAPP.Views
             botao_Iniciar_contagem.IsEnabled = false;
             //bt_cadastrar.IsEnabled = false;
             bt_Email.IsEnabled = true;
-            bt_exportar_csv.IsEnabled = true;
-            bt_home.IsEnabled = true;
-            bt_ler_csv.IsEnabled = true;
-            bt_listar.IsEnabled = true;
+            bt_exportar_csv.IsEnabled = 
+            bt_home.IsEnabled = 
+            bt_ler_csv.IsEnabled = 
+            bt_listar.IsEnabled = 
             bt_scanner.IsEnabled = true;
             //bt_Tirar_foto.IsEnabled = false;
         }

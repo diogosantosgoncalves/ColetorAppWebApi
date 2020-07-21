@@ -21,7 +21,8 @@ namespace ColetorAPP.Views
                 DisplayAlert("Aviso","A Contagem precisa estar Ativa!","ok");
                 return;
             }
-            Navigation.PushModalAsync(new PageScanner());
+            //Navigation.PushModalAsync(new PageScanner());
+            Navigation.PushAsync(new PageScanner());
         }
 
         private void tap_LocalizarProduto(object sender, System.EventArgs e)
@@ -29,7 +30,8 @@ namespace ColetorAPP.Views
             //MasterDetailPage p = (MasterDetailPage)Application.Current.MainPage;
             //p.Detail = new NavigationPage(new PageListar());
             //p.IsPresented = false;
-            Navigation.PushModalAsync(new PageListar());
+            //Navigation.PushModalAsync(new PageListar());
+            Navigation.PushAsync(new PageListar());
         }
     }
 }

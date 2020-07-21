@@ -68,7 +68,8 @@ namespace ColetorAPP.Views
             List<String> lista = new List<String>();
             lista.Add(destinatario);
             await SendEmail(lista, assunto, mensagem);
-
+            txt_assunto.Text = "";
+            txt_mensagem.Text = "";
         }
         public async Task SendEmail(List<String> Destinatario,string Assunto,string Mensagem)
         {
@@ -89,6 +90,8 @@ namespace ColetorAPP.Views
                 message.Attachments.Add(new Xamarin.Essentials.EmailAttachment(file));
                 await Email.ComposeAsync(message);
                 await DisplayAlert("Aviso", "Email Enviado!", "OK");
+                txt_assunto.Text = "";
+                txt_mensagem.Text = "";
 
             }
             catch (Exception ex)

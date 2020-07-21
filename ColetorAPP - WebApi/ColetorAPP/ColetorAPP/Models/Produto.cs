@@ -67,4 +67,5 @@ namespace ColetorAPP.Models
             //this.setor.setor_id = null;
         }
     }
+    
 }

@@ -169,6 +169,21 @@ namespace ColetorAPP.Services
             }
             return lista;
         }
+        public int BuscarProdutoPorCodigo(int codigo)
+        {
+            try
+            {
+                var resp = from p in conn.Table<Produto>()
+                           where p.Id == codigo
+                           select p;
+                //lista = resp.ToList();
+                return resp.Count();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(string.Format("Erro: {0}", ex.Message));
+            }
+        }
 
         public List<Produto> ListarFavoritos()
         {
