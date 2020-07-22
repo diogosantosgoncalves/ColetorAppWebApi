@@ -50,6 +50,7 @@ namespace ColetorAPP.Views
             if(achou == true)
             {
                 await DisplayAlert("Aviso!", "Bem Vindo ao Aplicativo!", "ok");
+                Globais.Nome_Usuario = usu.Nome;
                 await Navigation.PushModalAsync(new PagePrincipal());
 
                 setores = await dataServiceSetorUsuario.GetPermissao(usu.Nome);

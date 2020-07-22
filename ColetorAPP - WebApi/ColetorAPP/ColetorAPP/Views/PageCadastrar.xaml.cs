@@ -68,8 +68,8 @@ namespace ColetorAPP.Views
                 }
                 //MasterDetailPage p = (MasterDetailPage)Application.Current.MainPage;
                 //Detail = new NavigationPage(new PageHome());
-                Navigation.PushModalAsync(new PageHome());
 
+                Navigation.PopAsync();
             }
             catch (Exception ex)
             {

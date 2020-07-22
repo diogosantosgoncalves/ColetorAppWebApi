@@ -14,6 +14,7 @@ namespace ColetorAPP
         public static List<String> Setores = new List<string>();
         public static int Codigo_Inventario = 0;
         public static bool contagem_ativa;
+        public static string Nome_Usuario = "";
     }
     public partial class App : Application
     {

@@ -9,18 +9,20 @@
     <MasterDetailPage.Master>
         <ContentPage Title="Menu">
             <StackLayout Margin="5,0,0,0">
-                <!-- <Image Source="android" HorizontalOptions="Center" /> -->
-
                 <Label Text="Coletor 1.20.7" FontSize="Large" HorizontalOptions="Center" 
                        Margin="0,0,0,5"/>
                 <StackLayout Orientation="Horizontal">
-                    <Image Source="semimagem" WidthRequest="200" HeightRequest="150"
+                    <Image Source="semimagem" WidthRequest="175" HeightRequest="125"
                            x:Name="MinhaImagem" 
                            HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TirarFoto" NumberOfTapsRequired="1" />
                         </Image.GestureRecognizers>
                     </Image>
+                    <Label Text="Usuário:" FontSize="Large" HorizontalOptions="Center" 
+                       Margin="0,0,0,0"/>
+                    <Label x:Name="Nome" FontSize="Large" HorizontalOptions="Center" 
+                       Margin="0,0,0,0"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Image Source="home"/>

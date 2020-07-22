@@ -13,7 +13,7 @@
             <!-- <Image Source="cameracel" />-->
             <StackLayout BackgroundColor="RoyalBlue">
                 <Label FontSize="32" Margin="8" FontAttributes="Bold" TextColor="White"
-                       FontFamily="Arial Black" Text="COLETO APP" HorizontalTextAlignment="Center" />
+                       FontFamily="Arial Black" Text="COLETOR APP" HorizontalTextAlignment="Center" />
             </StackLayout>
             <!--<Label Text="COLETOR APP" 
            HorizontalOptions="Center"

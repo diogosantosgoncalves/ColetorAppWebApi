@@ -41,7 +41,7 @@ namespace ColetorAPP.Views
             Produto nota = (Produto)ListaNotas.SelectedItem;
             //MasterDetailPage p = (MasterDetailPage)Application.Current.MainPage;
             //p.Detail = new NavigationPage(new PageCadastrar(nota));
-            Navigation.PushModalAsync(new PageCadastrar(nota));
+            Navigation.PushAsync(new PageCadastrar(nota) { Title = "Alteração de Produto" });
         }
 
         private void SwFavorito_Toggled(object sender, ToggledEventArgs e)

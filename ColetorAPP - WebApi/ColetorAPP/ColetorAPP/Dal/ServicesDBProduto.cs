@@ -33,15 +33,15 @@ namespace ColetorAPP.Services
             return quant;
         }
 
-        public void Inserir(Produto nota)
+        public void Inserir(Produto produto)
         {
             try
             {
-                if (string.IsNullOrEmpty(nota.Nome))
+                if (string.IsNullOrEmpty(produto.Nome))
                 {
                     throw new Exception("Titulo dos produtos não informado!");
                 }
-                if (string.IsNullOrEmpty(nota.Setor))
+                if (string.IsNullOrEmpty(produto.Setor))
                 {
                     throw new Exception("Dados dos produtos não informado!");
                 }
@@ -52,11 +52,11 @@ namespace ColetorAPP.Services
                 //    throw new Exception("Quantidade de produtos não informado!");
                 //}
                 
-                int result = conn.Insert(nota);
+                int result = conn.Insert(produto);
                 if (result != 0)
                 {
-                    this.StatusMessage = string.Format("{0} registros adicionado(s):" +
-                    " [Nota: {1} ", result, nota.Nome);
+                    this.StatusMessage = string.Format("{0} registro(s) adicionado(s):" +
+                    " [Produto: {1} ", result, produto.Nome);
                 }
                 else
                 {
@@ -73,20 +73,12 @@ namespace ColetorAPP.Services
 
         public List<Produto> Listar()
         {
-            //List<Produto> lista = new List<Produto>();
             try
             {
-                //lista = conn.Table<Produto>().ToList();
                 var lista = conn.Table<Produto>().Where(c => c.Inativo == false).ToList();
-
-                //var lista = from cust in conn.Table<Produto>()
-                //            where cust.Inativo == true
-                //           select cust;
-                //
-
-                //return conexaoSQLite.Table<Cliente>().OrderBy(c => c.Nome).ToList();
+                StatusMessage = "listagem de Produtos";
                 return lista;
-                this.StatusMessage = "listagem de Produtos";
+                
             }
             catch (Exception ex)
             {
@@ -95,25 +87,25 @@ namespace ColetorAPP.Services
             }
             //return lista;
         }
-        public void Alterar(Produto notas)
+        public void Alterar(Produto produto)
         {
             try
             {
-                if (string.IsNullOrEmpty(notas.Nome))
+                if (string.IsNullOrEmpty(produto.Nome))
                 {
-                    throw new Exception("Titulo da nota não informado!");
+                    throw new Exception("Titulo do Produto não informado!");
                 }
-                if (string.IsNullOrEmpty(notas.Setor))
+                if (string.IsNullOrEmpty(produto.Setor))
                 {
-                    throw new Exception("Dados da nota não informado!");
+                    throw new Exception("Dados do Produto não informado!");
                 }
-                if (notas.Id <= 0)
+                if (produto.Id <= 0)
                 {
-                    throw new Exception("Id da nota não informado!");
+                    throw new Exception("Id do Produto não informado!");
                 }
-                int result = conn.Update(notas);
+                int result = conn.Update(produto);
                 
-                StatusMessage = string.Format("{0} Registros alterados!", result);
+                StatusMessage = string.Format("{0} Registro(s) alterado(s)!", result);
             }
             catch (Exception ex)
             {
@@ -125,7 +117,7 @@ namespace ColetorAPP.Services
             try
             {
                 int result = conn.Table<Produto>().Delete(registro => registro.Id == id);
-                StatusMessage = string.Format("{0} Registros deletados!", result);
+                StatusMessage = string.Format("{0} Registro(s) deletado(s)!", result);
             }
             catch (Exception ex)
             {
@@ -203,13 +195,13 @@ namespace ColetorAPP.Services
             return lista;
         }
 
-        public Produto GetNota(int id)
+        public Produto GetProduto(int id)
         {
             Produto m = new Produto();
             try
             {
                 m = conn.Table<Produto>().First(n => n.Id == id);
-                StatusMessage = "Encontrou uma nota";
+                StatusMessage = "Encontrou um Produto";
             }
             catch (Exception ex)
             {

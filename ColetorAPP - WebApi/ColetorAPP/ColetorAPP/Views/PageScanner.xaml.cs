@@ -216,6 +216,8 @@ namespace ColetorAPP.Views
                     if(set.ToString() != setor)
                     {
                         await DisplayAlert("Aviso!", "Sem permissão para contar esse produto", "ok");
+                        txt_qtde.IsVisible = false;
+                        return;
                     }
                 }
 

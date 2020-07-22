@@ -23,6 +23,7 @@ namespace ColetorAPP.Views
         public PagePrincipal()
         {
             InitializeComponent();
+            Nome.Text = Globais.Nome_Usuario;
             if (Globais.contagem_ativa)
             {
                 Habilitar_Botoes();
@@ -31,7 +32,6 @@ namespace ColetorAPP.Views
             {
                 Desabilitar_Botoes();
             }
-            //testeDB.Text = App.DbPath;
             Detail = new PageHome();
             bt_home_Clicked(new object(), new EventArgs());
         }
@@ -102,7 +102,7 @@ namespace ColetorAPP.Views
                 
             }
 
-            await DisplayAlert("Importação", "Produtos Atualizados: " + produtos.Count.ToString(), "ok");
+            await DisplayAlert("Importação", "Produto(s) Atualizado(s): " + produtos.Count.ToString(), "ok");
             Habilitar_Botoes();
             Detail = new NavigationPage(new PageHome());
             IsPresented = false;
@@ -124,9 +124,8 @@ namespace ColetorAPP.Views
 
         private void bt_listar_Clicked(object sender, EventArgs e)
         {
-            //Detail = new NavigationPage(new PageListar());
-            //IsPresented = false;
-            Navigation.PushAsync(new PageListar());
+            Detail = new NavigationPage(new PageListar());
+            IsPresented = false;
         }
         private async void bt_FecharContagem(object sender, EventArgs e)
         {
