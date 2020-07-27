@@ -65,6 +65,7 @@ namespace ColetorAPP.Views
             else
             {
                 Globais.Codigo_Inventario = codigo;
+                Codigo_Inventario.Text = codigo.ToString();
             }
 
             List<Produto> produtos = new List<Produto>();

@@ -9,7 +9,7 @@
     <MasterDetailPage.Master>
         <ContentPage Title="Menu">
             <StackLayout Margin="5,0,0,0">
-                <Label Text="Coletor 1.20.7" FontSize="Large" HorizontalOptions="Center" 
+                <Label Text="Coletor 1.26.7" FontSize="Large" HorizontalOptions="Center" 
                        Margin="0,0,0,5"/>
                 <StackLayout Orientation="Horizontal">
                     <Image Source="semimagem" WidthRequest="175" HeightRequest="125"
@@ -19,10 +19,13 @@
                             <TapGestureRecognizer Tapped="TirarFoto" NumberOfTapsRequired="1" />
                         </Image.GestureRecognizers>
                     </Image>
-                    <Label Text="Usuário:" FontSize="Large" HorizontalOptions="Center" 
-                       Margin="0,0,0,0"/>
-                    <Label x:Name="Nome" FontSize="Large" HorizontalOptions="Center" 
-                       Margin="0,0,0,0"/>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                        <Label FontSize="Medium"  Text="Usuário:"  HorizontalOptions="StartAndExpand" 
+                       Margin="0,20,0,0"/>
+                        <Label FontSize="Medium" x:Name="Nome" HorizontalOptions="StartAndExpand" 
+                       Margin="0,20,0,0"/>
+                    </StackLayout>
+
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Image Source="home"/>
@@ -69,6 +72,13 @@
                     <Image Source="fechar_contagem" WidthRequest="40"/>
                     <Button x:Name="bt_ler_csv" Text="Fechar Contagem" 
                         Clicked="bt_FecharContagem" HorizontalOptions="FillAndExpand" IsEnabled="False"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label FontSize="Small" Text="Inventário:"  HorizontalOptions="Center" 
+                       Margin="0,0,0,0"/>
+                    <Label FontSize="Small" x:Name="Codigo_Inventario" HorizontalOptions="Center" 
+                       Margin="0,0,0,0"/>
                 </StackLayout>
 
             </StackLayout>
