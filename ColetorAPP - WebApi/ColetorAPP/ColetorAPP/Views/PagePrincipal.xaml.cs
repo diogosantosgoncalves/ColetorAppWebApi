@@ -27,6 +27,9 @@ namespace ColetorAPP.Views
             if (Globais.contagem_ativa)
             {
                 Habilitar_Botoes();
+                Globais.Codigo_Inventario = dataServiceInventario.BuscarInventarioAberto().Result;
+                Codigo_Inventario.Text = Globais.Codigo_Inventario.ToString();
+
             }
             else
             {
